@@ -1,4 +1,4 @@
-package com.findmatch
+package com.example.findmatch
 
 import org.junit.Test
 
