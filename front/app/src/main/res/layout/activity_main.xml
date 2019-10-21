@@ -36,4 +36,24 @@
         app:layout_constraintStart_toStartOf="@+id/nameEdit"
         app:layout_constraintTop_toBottomOf="@+id/nameEdit" />
 
+    <Button
+        android:id="@+id/connection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="448dp"
+        android:text="통신하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/inputButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inputButton" />
+
+    <Button
+        android:id="@+id/intentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:text="인텐트하기"
+        app:layout_constraintStart_toEndOf="@+id/connection"
+        app:layout_constraintTop_toTopOf="@+id/connection" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
