@@ -40,20 +40,30 @@
         android:id="@+id/connection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="448dp"
+        android:layout_marginTop="24dp"
         android:text="통신하기"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/inputButton"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/inputButton" />
+        app:layout_constraintStart_toStartOf="@+id/inputButton"
+        app:layout_constraintTop_toBottomOf="@+id/inputButton" />
 
     <Button
         android:id="@+id/intentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
         android:text="인텐트하기"
         app:layout_constraintStart_toEndOf="@+id/connection"
-        app:layout_constraintTop_toTopOf="@+id/connection" />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="로그인페이지"
+        app:layout_constraintStart_toEndOf="@+id/inputButton"
+        app:layout_constraintTop_toTopOf="@+id/inputButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
