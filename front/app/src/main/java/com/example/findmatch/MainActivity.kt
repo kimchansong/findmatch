@@ -32,7 +32,9 @@ class MainActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             startActivity<LoginActivity>()
         }
-
+        MakeTeamBtn.setOnClickListener {
+            startActivity<MakeTeamActivity>()
+        }
         // 인텐트로 화면넘기기
         intentButton.setOnClickListener{
 
