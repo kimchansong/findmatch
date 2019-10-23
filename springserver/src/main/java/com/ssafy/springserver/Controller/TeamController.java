@@ -23,6 +23,30 @@ public class TeamController {
         }
         else return null;
     }
+
+    // 팀원 조회
+    @GetMapping("/teamMember/{teamName}")
+    public List<TeamMemberDto> getTeamMember(@PathVariable("teamName") String teamName){
+        if(teamName != null){
+            List<TeamMember> teamMember = teamMemberRepository.findByName(teamName);
+
+            List<TeamMemberDto> teamMemberDtos = new ArrayList<>();
+            for (TeamMember member: teamMember) {
+                teamMemberDtos.add(new TeamMemberDto(
+                        member.getTeamMemberId().getTeamName(),
+                        member.getTeamMemberId().getUserId(),
+                        member.getAuth()));
+            }
+
+            return teamMemberDtos;
+        }
+        else return null;
+    }
+
+    // 팀 요청 조회
+    @GetMapping("/teamJoinRequest/{teamName}")
+    public
+
     @GetMapping("/duplicationCheck/{teamName}")
     public TeamDto checkTeamName(@PathVariable("teamName") String teamName){
         if(teamName != null){
