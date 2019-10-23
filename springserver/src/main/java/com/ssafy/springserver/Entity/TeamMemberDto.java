@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class TeamDto {
+public class TeamMemberDto {
     private String teamName;
-    private String teamInfo;
+    private String userId;
+    private String auth;
 }
