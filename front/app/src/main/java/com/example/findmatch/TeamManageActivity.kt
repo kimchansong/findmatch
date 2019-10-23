@@ -15,15 +15,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class TeamManageActivity : AppCompatActivity() {
     val teamMemberList = mutableListOf<TeamMemberDto>()
+    val teamJoinList = mutableListOf<TeamJoinDto>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team_manage)
 
-        setRetrofit(this)
+        getTeamMember(this)
+        getTeamJoinRequest(this)
     }
 
     // HTTP 통신
-    private fun setRetrofit(teamManageActivity: TeamManageActivity){
+    private fun getTeamMember(teamManageActivity: TeamManageActivity){
         val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .client(createOkHttpClient())
@@ -43,13 +45,41 @@ class TeamManageActivity : AppCompatActivity() {
                     val num = response.body()!!.size - 1
 
                     for (i in 0.. num){
-                        Log.d("?", response.body()!!.get(i).userId)
                         teamMemberList.add(response.body()!!.get(i))
                     }
 
-                    Log.d("멤버 확인", teamMemberList.toString())
                     val teamMemberAdapter = TeamListAdapter(teamManageActivity, teamMemberList)
                     listTeamMember.adapter = teamMemberAdapter
+                }
+            }
+        })
+    }
+
+    private fun getTeamJoinRequest(teamManageActivity: TeamManageActivity){
+        val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(createOkHttpClient())
+            .build()
+
+        var service = retrofit.create(TeamService::class.java)
+
+        val call: Call<Array<TeamJoinDto>> = service.requestTeamJoin()
+
+        call.enqueue(object : Callback<Array<TeamJoinDto>> {
+            override fun onFailure(call: Call<Array<TeamJoinDto>>, t: Throwable) {
+                Toast.makeText(applicationContext,"실패", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<Array<TeamJoinDto>>, response: Response<Array<TeamJoinDto>>) {
+                if(response.body()!=null){
+                    val num = response.body()!!.size - 1
+
+                    for (i in 0.. num){
+                        teamJoinList.add(response.body()!!.get(i))
+                    }
+
+                    val teamJoinAdapter = TeamJoinListAdapter(teamManageActivity, teamJoinList)
+                    listTeamJoinRequest.adapter = teamJoinAdapter
                 }
             }
         })

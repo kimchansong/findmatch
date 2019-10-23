@@ -11,4 +11,8 @@ interface TeamService{
     // 팀원 불러오기
     @GET("teamMember/sk")
     fun requestTeamMember():Call<Array<TeamMemberDto>>
+
+    // 팀 가입 요청 리스트 불러오기
+    @GET("teamJoinRequest/sk")
+    fun requestTeamJoin():Call<Array<TeamJoinDto>>
 }
