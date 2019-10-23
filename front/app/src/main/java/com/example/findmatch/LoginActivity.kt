@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -13,6 +14,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
@@ -36,6 +44,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         auth = FirebaseAuth.getInstance()
+        checkUser()
+
 
     }
 
@@ -149,6 +159,39 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     companion object {
         private const val TAG = "GoogleActivity"
         private const val RC_SIGN_IN = 9001
+    }
+
+    private fun checkUser(){
+        val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(createOkHttpClient())
+            .build()
+
+        var service = retrofit.create(UserService::class.java)
+
+        val call: Call<UserDto> = service.requestUserOk()
+
+        call.enqueue(object : Callback<UserDto> {
+            override fun onFailure(call: Call<UserDto>, t: Throwable) {
+                Toast.makeText(applicationContext,"실패", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
+                if(response.body()!=null){
+                    Log.d(TAG,"가입됨")
+                }else{
+                    Log.d(TAG,"가입안됨")
+                }
+            }
+        })
+    }
+
+    private fun createOkHttpClient(): OkHttpClient {
+        val builder = OkHttpClient.Builder()
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        builder.addInterceptor(interceptor)
+        return builder.build()
     }
 
 }
