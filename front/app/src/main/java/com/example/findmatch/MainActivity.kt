@@ -9,6 +9,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,6 +28,13 @@ class MainActivity : AppCompatActivity() {
         // 데이터 값 읽어오기
         loadData()
 
+        // 로그인 페이지
+        loginButton.setOnClickListener {
+            startActivity<LoginActivity>()
+        }
+        MakeTeamBtn.setOnClickListener {
+            startActivity<MakeTeamActivity>()
+        }
         // 인텐트로 화면넘기기
         intentButton.setOnClickListener{
 

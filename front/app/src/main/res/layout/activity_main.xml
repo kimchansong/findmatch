@@ -49,9 +49,29 @@
         android:id="@+id/intentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
         android:text="인텐트하기"
         app:layout_constraintStart_toEndOf="@+id/connection"
-        app:layout_constraintTop_toTopOf="@+id/connection" />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="로그인페이지"
+        app:layout_constraintStart_toEndOf="@+id/inputButton"
+        app:layout_constraintTop_toTopOf="@+id/inputButton" />
+
+    <Button
+        android:id="@+id/MakeTeamBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="56dp"
+        android:text="팀 생성"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connection" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
