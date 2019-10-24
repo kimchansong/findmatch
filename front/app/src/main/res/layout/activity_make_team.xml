@@ -84,20 +84,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginTop="256dp"
         android:text="팀 생성"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MemberEmailText" />
 
     <Button
         android:id="@+id/RollBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginTop="256dp"
         android:text="돌아가기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TeamMakeCommit" />
+        app:layout_constraintStart_toEndOf="@+id/TeamMakeCommit"
+        app:layout_constraintTop_toBottomOf="@+id/MemberEmailText" />
 
     <TextView
         android:id="@+id/dupCheckText"
@@ -110,30 +110,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TeamNameTxt" />
 
-    <TextView
-        android:id="@+id/MemberEmailtext"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="164dp"
-        android:hint="email을 입력해주세요"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toEndOf="@+id/TeamMember"
-        app:layout_constraintTop_toBottomOf="@+id/TeamInfoTxt" />
-
     <ScrollView
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="328dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MemberEmailtext"
-        app:layout_constraintVertical_bias="0.07999998">
+        app:layout_constraintTop_toBottomOf="@+id/EmailCheckText">
 
         <LinearLayout
+            android:id="@+id/MemberLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <EditText
+        android:id="@+id/MemberEmailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="158dp"
+        android:ems="10"
+        android:hint="email을 입력해주세요"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/TeamMember"
+        app:layout_constraintTop_toBottomOf="@+id/TeamInfoTxt" />
+
+    <TextView
+        android:id="@+id/EmailCheckText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/TeamMember"
+        app:layout_constraintTop_toBottomOf="@+id/MemberEmailText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,6 +17,7 @@ interface TeamService{
     @GET("teamJoinRequest/sk")
     fun requestTeamJoin():Call<Array<TeamJoinDto>>
 
+    // 팀 중복 체크
     @GET("duplicationCheck/{teamName}")
     fun duplicationTeamName(@Path("teamName") teamName:String):Call<TeamDto>
 }

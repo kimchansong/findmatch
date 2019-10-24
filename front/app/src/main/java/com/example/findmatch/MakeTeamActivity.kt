@@ -1,15 +1,14 @@
 package com.example.findmatch
 
-import android.content.DialogInterface
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.core.view.get
 import kotlinx.android.synthetic.main.activity_make_team.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,8 +64,32 @@ class MakeTeamActivity : AppCompatActivity() {
             .client(createOkHttpClient())
             .build()
 
-        val MemberEmail = MemberEmailtext.text.toString()
-        
+        val MemberEmail = MemberEmailText.text.toString()
+        var service = retrofit.create(UserService::class.java)
+        val call : Call<UserDto> = service.requestUserOk(MemberEmail)
+        call.enqueue(object : Callback<UserDto>{
+
+            override fun onFailure(call: Call<UserDto>, t: Throwable) {
+                Toast.makeText(applicationContext,"실패",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
+                if(response.body()!=null){
+                    EmailCheckText.setText("추가 성공!")
+                    EmailCheckText.setTextColor(Color.BLUE)
+                    addText(MemberEmail)
+                }else{
+                    EmailCheckText.setText("이메일이 없습니다.")
+                    EmailCheckText.setTextColor(Color.RED)
+                }
+            }
+        })
+    }
+
+    private fun addText(MemberEmail:String){
+        val textView = TextView(this)
+        textView.text = MemberEmail
+        MemberLayout.addView(textView)
     }
     private fun createOkHttpClient(): OkHttpClient {
         val builder = OkHttpClient.Builder()
