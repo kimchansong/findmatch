@@ -1,4 +1,4 @@
-package com.example.findmatch
+package com.example.findmatch.Adapter
 
 import android.content.Context
 import android.util.Log
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import com.example.findmatch.DTO.BoardDto
+import com.example.findmatch.R
 
 class BoardAdapter (val context : Context, val boardList: List<BoardDto>) : BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {

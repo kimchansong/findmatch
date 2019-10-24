@@ -1,14 +1,14 @@
-package com.example.findmatch
+package com.example.findmatch.Activity
 
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import com.example.findmatch.R
+import com.example.findmatch.DTO.TeamDto
+import com.example.findmatch.Service.TeamService
 import kotlinx.android.synthetic.main.activity_make_team.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

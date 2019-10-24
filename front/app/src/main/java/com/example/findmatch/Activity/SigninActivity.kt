@@ -1,7 +1,8 @@
-package com.example.findmatch
+package com.example.findmatch.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.findmatch.R
 
 class SigninActivity : AppCompatActivity() {
 

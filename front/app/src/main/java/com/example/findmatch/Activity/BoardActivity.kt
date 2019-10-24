@@ -1,10 +1,13 @@
-package com.example.findmatch
+package com.example.findmatch.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.findmatch.Adapter.BoardAdapter
+import com.example.findmatch.DTO.BoardDto
+import com.example.findmatch.Service.BoardService
+import com.example.findmatch.R
 import kotlinx.android.synthetic.main.activity_board.*
-import kotlinx.android.synthetic.main.activity_team_manage.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -51,7 +54,8 @@ class BoardActivity : AppCompatActivity() {
                         boardList.add(response.body()!!.get(i))
                     }
 
-                    val boardAdapter = BoardAdapter(boardActivity, boardList)
+                    val boardAdapter =
+                        BoardAdapter(boardActivity, boardList)
                     listBoard.adapter = boardAdapter
                 }
             }

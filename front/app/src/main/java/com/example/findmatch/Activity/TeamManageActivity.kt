@@ -1,8 +1,15 @@
-package com.example.findmatch
+package com.example.findmatch.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.findmatch.*
+import com.example.findmatch.Adapter.TeamJoinListAdapter
+import com.example.findmatch.Adapter.TeamListAdapter
+import com.example.findmatch.DTO.TeamDto
+import com.example.findmatch.DTO.TeamJoinDto
+import com.example.findmatch.DTO.TeamMemberDto
+import com.example.findmatch.Service.TeamService
 import kotlinx.android.synthetic.main.activity_team_manage.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -83,7 +90,11 @@ class TeamManageActivity : AppCompatActivity() {
                         teamMemberList.add(response.body()!!.get(i))
                     }
 
-                    val teamMemberAdapter = TeamListAdapter(teamManageActivity, teamMemberList)
+                    val teamMemberAdapter =
+                        TeamListAdapter(
+                            teamManageActivity,
+                            teamMemberList
+                        )
                     listTeamMember.adapter = teamMemberAdapter
                 }
             }
@@ -114,7 +125,11 @@ class TeamManageActivity : AppCompatActivity() {
                         teamJoinList.add(response.body()!!.get(i))
                     }
 
-                    val teamJoinAdapter = TeamJoinListAdapter(teamManageActivity, teamJoinList)
+                    val teamJoinAdapter =
+                        TeamJoinListAdapter(
+                            teamManageActivity,
+                            teamJoinList
+                        )
                     listTeamJoinRequest.adapter = teamJoinAdapter
                 }
             }

@@ -1,4 +1,4 @@
-package com.example.findmatch
+package com.example.findmatch.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
 import android.widget.Toast
+import com.example.findmatch.R
+import com.example.findmatch.DTO.TeamDto
+import com.example.findmatch.Service.TeamService
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
