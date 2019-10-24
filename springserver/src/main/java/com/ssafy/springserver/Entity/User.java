@@ -12,17 +12,19 @@ import javax.persistence.*;
 @Table(name = "User")
 public class User {
     @Id
-    private @Column(name = "user_id") String userId;
-    private @Column(name = "team_name") String userName;
-    private @Column(name = "team_age") String userAge;
-    private @Column(name = "team_phone") String userPhone;
+    private @Column(name = "u_id") String userId;
+    private @Column(name = "u_name") String userName;
+    private @Column(name = "u_age") String userAge;
+    private @Column(name = "u_phone") String userPhone;
+    private @Column(name = "u_point") String userPoint;
 
     @Builder
-    User(String userId, String userName, String userAge, String userPhone){
+    User(String userId, String userName, String userAge, String userPhone, String userPoint){
         this.userId = userId;
         this.userName = userName;
         this.userAge = userAge;
         this.userPhone = userPhone;
+        this.userPoint = userPoint;
     }
 
 }

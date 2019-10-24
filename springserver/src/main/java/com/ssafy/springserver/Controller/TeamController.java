@@ -53,9 +53,6 @@ public class TeamController {
     }
 
     // 팀 요청 조회
-//    @GetMapping("/teamJoinRequest/{teamName}")
-//    public
-
     @GetMapping("/duplicationCheck/{teamName}")
     public TeamDto checkTeamName(@PathVariable("teamName") String teamName){
         if(teamName != null){
@@ -65,5 +62,6 @@ public class TeamController {
         }
         else return null;
     }
+
 
 }

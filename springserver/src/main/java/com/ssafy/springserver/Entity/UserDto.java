@@ -10,4 +10,5 @@ public class UserDto {
     private String userName;
     private String userAge;
     private String userPhone;
+    private String userPoint;
 }

@@ -47,12 +47,14 @@ class MakeTeamActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<TeamDto>, response: Response<TeamDto>) {
                 if(response.body()!=null){
+
                     dupCheckText.setText("등록된 팀 이름이 있습니다. 다시 설정해주세요.")
                     dupCheckText.setTextColor(Color.RED)
 
                 }else{
                     dupCheckText.setText("사용 가능한 팀 명입니다.")
                     dupCheckText.setTextColor(Color.BLUE)
+
                 }
             }
         })
