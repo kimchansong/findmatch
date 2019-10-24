@@ -14,8 +14,11 @@ class TeamJoinListAdapter (val context : Context, val teamJoinList: List<TeamJoi
         val view: View = LayoutInflater.from(context).inflate(R.layout.activity_team_joinrequest_item, null)
 
         val userId = view.findViewById<TextView>(R.id.userId)
+        val status = view.findViewById<TextView>(R.id.status)
+
         val teamJoin = teamJoinList[position]
         userId.text = teamJoin.userId
+        status.text = teamJoin.status
 
         return view
     }

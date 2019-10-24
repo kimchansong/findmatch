@@ -9,9 +9,9 @@ import java.io.Serializable;
 @Data
 @Embeddable
 public class TeamMemberId implements Serializable {
-    @Column(name = "Team_team_name")
+    @Column(name = "Team_t_name")
     private String teamName;
 
-    @Column(name = "User_user_id")
+    @Column(name = "User_u_id")
     private String userId;
 }
