@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User, String>{
-    @Query("SELECT user FROM User user WHERE userId = :userId")
+    @Query("SELECT user FROM User user WHERE u_id = :userId")
     User checkId(@Param("userId") String userId);
 }

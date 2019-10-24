@@ -44,7 +44,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         auth = FirebaseAuth.getInstance()
-        checkUser()
 
 
     }
@@ -80,7 +79,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
         showProgressDialog()
 
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
@@ -91,6 +89,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
                     updateUI(user)
+                    if(user!=null){
+                        Log.d(TAG, getString(R.string.google_status_fmt, user.email))
+                        checkUser(user)
+
+                    }
 
                 } else {
                     // If sign in fails, display a message to the user.
@@ -161,26 +164,31 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         private const val RC_SIGN_IN = 9001
     }
 
-    private fun checkUser(){
+    private fun checkUser(user: FirebaseUser?){
         val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .client(createOkHttpClient())
             .build()
 
         var service = retrofit.create(UserService::class.java)
+        var email :String? = ""
+        if(user!=null){
+            email = user.email
+        }
 
-        val call: Call<UserDto> = service.requestUserOk()
+        val call: Call<UserDto> = service.requestUserOk(email!!)
 
         call.enqueue(object : Callback<UserDto> {
             override fun onFailure(call: Call<UserDto>, t: Throwable) {
                 Toast.makeText(applicationContext,"실패", Toast.LENGTH_SHORT).show()
+                Log.d(TAG,"실패")
+
             }
 
             override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
                 if(response.body()!=null){
                     Log.d(TAG,"가입됨")
-                }else{
-                    Log.d(TAG,"가입안됨")
+
                 }
             }
         })
