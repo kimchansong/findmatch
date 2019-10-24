@@ -16,6 +16,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -180,9 +181,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
         call.enqueue(object : Callback<UserDto> {
             override fun onFailure(call: Call<UserDto>, t: Throwable) {
-                Toast.makeText(applicationContext,"실패", Toast.LENGTH_SHORT).show()
-                Log.d(TAG,"실패")
-
+                startActivity<SigninActivity>()
             }
 
             override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
