@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             // 보낼 데이터 저장
             saveData("hihi")
 
-            val intent = Intent(this, ResultActivity::class.java)
+            val intent = Intent(this, TeamManageActivity::class.java)
             // 데이터 보내기
             intent.putExtra("hi", "hihi")
             startActivity(intent)

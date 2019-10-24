@@ -5,6 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface TeamService{
+    // 팀 정보 불러오기
     @GET("team/sk")
     fun requestTeam():Call<TeamDto>
 

@@ -2,9 +2,15 @@ package com.ssafy.springserver.Controller;
 
 import com.ssafy.springserver.Entity.Team;
 import com.ssafy.springserver.Entity.TeamDto;
+import com.ssafy.springserver.Entity.TeamMember;
+import com.ssafy.springserver.Entity.TeamMemberDto;
+import com.ssafy.springserver.Repository.TeamMemberRepository;
 import com.ssafy.springserver.Repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @CrossOrigin(origins = {"*"})
 @RestController
@@ -12,6 +18,9 @@ public class TeamController {
 
     @Autowired
     private TeamRepository teamRepository;
+
+    @Autowired
+    private TeamMemberRepository teamMemberRepository;
 
     // 팀 정보 조회
     @GetMapping("/team/{teamName}")
