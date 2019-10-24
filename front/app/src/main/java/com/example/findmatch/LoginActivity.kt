@@ -186,8 +186,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
                 if(response.body()!=null){
-                    Log.d(TAG,"가입됨")
-
+                    startActivity<MainActivity>()
                 }
             }
         })
