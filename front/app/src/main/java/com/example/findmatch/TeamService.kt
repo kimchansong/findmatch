@@ -2,6 +2,7 @@ package com.example.findmatch
 
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface TeamService{
@@ -17,6 +18,11 @@ interface TeamService{
     @GET("teamJoinRequest/sk")
     fun requestTeamJoin():Call<Array<TeamJoinDto>>
 
+    // 팀 삭제
+    @POST("team/delete/sk")
+    fun requestTeamDelete():Call<Boolean>
+
+    // 팀 중복 체크
     @GET("duplicationCheck/{teamName}")
     fun duplicationTeamName(@Path("teamName") teamName:String):Call<TeamDto>
 }
