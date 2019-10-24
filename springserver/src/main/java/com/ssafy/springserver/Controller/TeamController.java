@@ -52,9 +52,6 @@ public class TeamController {
         else return null;
     }
 
-    // 팀 요청 조회
-    @GetMapping("/teamJoinRequest/{teamName}")
-    public
 
     @GetMapping("/duplicationCheck/{teamName}")
     public TeamDto checkTeamName(@PathVariable("teamName") String teamName){

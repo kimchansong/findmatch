@@ -12,6 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".BoardAdapter"
+            android:label="@string/title_activity_board_adapter"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Board" />
         <activity android:name=".MakeTeamActivity" />
         <activity
             android:name=".ResultActivity"
@@ -23,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TeamManageActivity"></activity>
+        <activity android:name=".TeamManageActivity" />
         <activity android:name=".LoginActivity" />
     </application>
 

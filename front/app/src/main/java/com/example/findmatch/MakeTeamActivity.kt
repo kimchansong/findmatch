@@ -43,13 +43,6 @@ class MakeTeamActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<TeamDto>, response: Response<TeamDto>) {
                 if(response.body()!=null){
-                    val builer = AlertDialog.Builder(this@MakeTeamActivity)
-                    builer.setTitle("팀 명 중복")
-                    builer.setMessage("팀 명이 중복되었습니다. 다시 입력해주세요.")
-                    builer.setPositiveButton("확인",DialogInterface.OnClickListener()
-
-
-                    )
                 }
             }
         })
