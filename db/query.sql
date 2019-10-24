@@ -112,19 +112,18 @@ ENGINE = InnoDB;
 -- Table `test`.`matching_away`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `test`.`matching_away` (
-  `matching_m_num` INT NOT NULL,
+  `matching_m_num1` INT NOT NULL,
   `Team_t_name` VARCHAR(45) NOT NULL,
-  INDEX `fk_matching_away_matching1_idx` (`matching_m_num` ASC) VISIBLE,
-  PRIMARY KEY (`matching_m_num`),
   INDEX `fk_matching_away_Team1_idx` (`Team_t_name` ASC) VISIBLE,
-  CONSTRAINT `fk_matching_away_matching1`
-    FOREIGN KEY (`matching_m_num`)
-    REFERENCES `test`.`matching` (`m_num`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_matching_away_matching2_idx` (`matching_m_num1` ASC) VISIBLE,
   CONSTRAINT `fk_matching_away_Team1`
     FOREIGN KEY (`Team_t_name`)
     REFERENCES `test`.`Team` (`t_name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_matching_away_matching2`
+    FOREIGN KEY (`matching_m_num1`)
+    REFERENCES `test`.`matching` (`m_num`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -185,6 +184,7 @@ insert into User values("test1", "홍길동1", "26", "010-1234-5678", 0);
 insert into User values("test2", "홍길동2", "26", "010-1234-5678", 0);
 insert into User values("test3", "홍길동3", "26", "010-1234-5678", 0);
 insert into User values("test4", "홍길동4", "26", "010-1234-5678", 0);
+select * from user;
 select * from Team;
 insert into Team values("기아타이거즈","광주 챔피언스 필드 홈구장","광산구");
 insert into Team values("sk","문학 홈구장","인천");
