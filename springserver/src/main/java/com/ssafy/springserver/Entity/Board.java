@@ -2,6 +2,7 @@ package com.ssafy.springserver.Entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "board")
 public class Board {
     @Id

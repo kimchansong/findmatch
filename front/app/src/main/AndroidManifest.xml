@@ -16,7 +16,8 @@
             android:name=".BoardAdapter"
             android:label="@string/title_activity_board_adapter"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Board" />
+        <activity android:name=".BoardActivity" />
+        <activity android:name=".SigninActivity"></activity>
         <activity android:name=".MakeTeamActivity" />
         <activity
             android:name=".ResultActivity"

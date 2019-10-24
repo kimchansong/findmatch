@@ -3,6 +3,7 @@ package com.example.findmatch
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_board.*
 import kotlinx.android.synthetic.main.activity_team_manage.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,7 +20,7 @@ class BoardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result)
+        setContentView(R.layout.activity_board)
 
         setRetrofit(this)
     }
@@ -51,7 +52,7 @@ class BoardActivity : AppCompatActivity() {
                     }
 
                     val boardAdapter = BoardAdapter(boardActivity, boardList)
-                    listTeamMember.adapter = boardAdapter
+                    listBoard.adapter = boardAdapter
                 }
             }
         })
