@@ -13,24 +13,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".BoardAdapter"
+            android:name=".Adapter.BoardAdapter"
             android:label="@string/title_activity_board_adapter"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".BoardActivity" />
-        <activity android:name=".SigninActivity"></activity>
-        <activity android:name=".MakeTeamActivity" />
+        <activity android:name=".Activity.BoardActivity" />
+        <activity android:name=".Activity.SigninActivity"></activity>
+        <activity android:name=".Activity.MakeTeamActivity" />
         <activity
-            android:name=".ResultActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+            android:name=".Activity.ResultActivity"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TeamManageActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".Activity.TeamManageActivity" />
+        <activity android:name=".Activity.LoginActivity" />
     </application>
 
 </manifest>

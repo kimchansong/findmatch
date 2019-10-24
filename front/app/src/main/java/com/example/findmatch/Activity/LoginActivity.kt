@@ -1,10 +1,12 @@
-package com.example.findmatch
+package com.example.findmatch.Activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import com.example.findmatch.R
+import com.example.findmatch.DTO.UserDto
+import com.example.findmatch.Service.UserService
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -91,7 +93,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     val user = auth.currentUser
                     updateUI(user)
                     if(user!=null){
-                        Log.d(TAG, getString(R.string.google_status_fmt, user.email))
+                        Log.d(
+                            TAG, getString(
+                                R.string.google_status_fmt, user.email))
                         checkUser(user)
 
                     }
@@ -126,7 +130,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+        startActivityForResult(signInIntent,
+            RC_SIGN_IN
+        )
     }
 
     private fun signOut() {

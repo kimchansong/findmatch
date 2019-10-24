@@ -1,5 +1,8 @@
-package com.example.findmatch
+package com.example.findmatch.Service
 
+import com.example.findmatch.DTO.TeamDto
+import com.example.findmatch.DTO.TeamJoinDto
+import com.example.findmatch.DTO.TeamMemberDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
