@@ -22,22 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="50dp"
         android:text="팀 소개 :"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TeamName" />
-
-    <TextView
-        android:id="@+id/TeamMember"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:text="팀 맴버 :"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TeamInfo" />
 
     <EditText
         android:id="@+id/TeamNameTxt"
@@ -69,25 +58,26 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/TeamInfo"
         app:layout_constraintStart_toEndOf="@+id/TeamInfo" />
 
-    <EditText
-        android:id="@+id/TeamMemberTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TeamMember"
-        app:layout_constraintStart_toEndOf="@+id/TeamMember" />
-
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/addMemberBtn"
+        android:layout_width="33dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
+
+    <TextView
+        android:id="@+id/TeamMember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintStart_toEndOf="@+id/TeamMemberTxt"
-        app:layout_constraintTop_toBottomOf="@+id/DupBtn"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+        android:layout_marginTop="172dp"
+        android:text="팀 맴버 :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TeamInfo" />
 
     <Button
         android:id="@+id/TeamMakeCommit"
@@ -108,5 +98,42 @@
         android:text="돌아가기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/TeamMakeCommit" />
+
+    <TextView
+        android:id="@+id/dupCheckText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/TeamInfoTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TeamNameTxt" />
+
+    <TextView
+        android:id="@+id/MemberEmailtext"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="164dp"
+        android:hint="email을 입력해주세요"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toEndOf="@+id/TeamMember"
+        app:layout_constraintTop_toBottomOf="@+id/TeamInfoTxt" />
+
+    <ScrollView
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MemberEmailtext"
+        app:layout_constraintVertical_bias="0.07999998">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
