@@ -17,10 +17,11 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/user/{userId}")
-    public UserDto checkUser(@PathVariable("userId") String userId){
+    public User checkUser(@PathVariable("userId") String userId){
+        System.out.println(userId);
         if(userId != null){
             User user = userRepository.checkId(userId);
-            return new UserDto(user.getUserId(), user.getUserName(), user.getUserAge(), user.getUserPhone());
+            return user;
         }else
             return null;
     }

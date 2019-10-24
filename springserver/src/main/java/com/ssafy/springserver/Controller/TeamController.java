@@ -54,10 +54,21 @@ public class TeamController {
 
     // 팀 요청 조회
     @GetMapping("/teamJoinRequest/{teamName}")
-    public List<TeamJoinRequest> getTeamJoinRequest(@PathVariable("teamName") String teamName){
-        if(teamName != null){
+    public List<TeamJoinRequest> getTeamJoinRequest(@PathVariable("teamName") String teamName) {
+        if (teamName != null) {
             List<TeamJoinRequest> teamJoinRequests = teamJoinRequestRepository.findByTeamName(teamName);
             return teamJoinRequests;
+        }else{
+            return null;
+        }
+    }
+
+    // 팀 중복 조회
+    @GetMapping("/duplicationCheck/{teamName}")
+    public Team checkTeamName(@PathVariable("teamName") String teamName){
+        if(teamName != null){
+            Team team = teamRepository.findByTeamName(teamName);
+            return team;
         }
         else return null;
     }
