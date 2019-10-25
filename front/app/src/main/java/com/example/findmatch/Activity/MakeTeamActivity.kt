@@ -1,4 +1,7 @@
-package com.example.findmatch
+package com.example.findmatch.Activity
+
+import com.example.findmatch.DTO.UserDto
+import com.example.findmatch.Service.UserService
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +12,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.get
 import androidx.core.widget.addTextChangedListener
+import com.example.findmatch.R
+import com.example.findmatch.DTO.TeamDto
+import com.example.findmatch.Service.TeamService
 import kotlinx.android.synthetic.main.activity_make_team.*
 import kotlinx.android.synthetic.main.activity_team_manage.*
 import okhttp3.OkHttpClient

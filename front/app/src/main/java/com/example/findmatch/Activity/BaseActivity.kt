@@ -1,4 +1,4 @@
-package com.example.findmatch
+package com.example.findmatch.Activity
 
 import android.app.ProgressDialog
 import android.content.Context
@@ -6,6 +6,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.example.findmatch.R
 
 open class BaseActivity : AppCompatActivity() {
 

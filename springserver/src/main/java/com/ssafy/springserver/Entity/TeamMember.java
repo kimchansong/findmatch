@@ -14,7 +14,7 @@ public class TeamMember {
 
     @EmbeddedId
     private TeamMemberId teamMemberId;
-    private @Column(name = "Team_auth") String auth;
+    private @Column(name = "t_auth") String auth;
 
     @Builder
     TeamMember(String teamName, String userId, String auth){

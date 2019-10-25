@@ -4,74 +4,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
-    <EditText
-        android:id="@+id/nameEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="이름"
-        app:layout_constraintStart_toStartOf="@+id/greetText"
-        app:layout_constraintTop_toBottomOf="@+id/greetText" />
 
-    <TextView
-        android:id="@+id/greetText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="당신의 이름을 입력하세요"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/inputButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="116dp"
+            android:layout_marginEnd="76dp"
+            android:text="인사하기"
+            app:layout_constraintEnd_toStartOf="@+id/loginButton"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <Button
-        android:id="@+id/inputButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="인사하기"
-        app:layout_constraintStart_toStartOf="@+id/nameEdit"
-        app:layout_constraintTop_toBottomOf="@+id/nameEdit" />
 
-    <Button
-        android:id="@+id/connection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="통신하기"
-        app:layout_constraintStart_toStartOf="@+id/inputButton"
-        app:layout_constraintTop_toBottomOf="@+id/inputButton" />
+        <Button
+            android:id="@+id/boardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="44dp"
+            android:text="게시판보기"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/connection" />
 
-    <Button
-        android:id="@+id/intentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
-        android:text="인텐트하기"
-        app:layout_constraintStart_toEndOf="@+id/connection"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="72dp"
+            android:text="로그인페이지"
+            app:layout_constraintBottom_toTopOf="@+id/MakeTeamBtn"
+            app:layout_constraintStart_toEndOf="@+id/intentButton"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="로그인페이지"
-        app:layout_constraintStart_toEndOf="@+id/inputButton"
-        app:layout_constraintTop_toTopOf="@+id/inputButton" />
+        <Button
+            android:id="@+id/MakeTeamBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="72dp"
+            android:text="팀 생성"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/inputButton"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/MakeTeamBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="56dp"
-        android:text="팀 생성"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connection" />
+        <Button
+            android:id="@+id/intentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="88dp"
+            android:text="인텐트하기"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintEnd_toStartOf="@+id/MakeTeamBtn" />
+
+        <Button
+            android:id="@+id/connection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="44dp"
+            android:text="통신하기"
+            app:layout_constraintEnd_toStartOf="@+id/intentButton"
+            app:layout_constraintTop_toBottomOf="@+id/inputButton" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="415dp"
+            android:layout_height="177dp"
+            android:layout_marginBottom="200dp"
+            android:background="#2FD5C1"
+            android:backgroundTint="#58E9D6"
+            android:text="배너"
+            app:layout_constraintBottom_toTopOf="@+id/intentButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="415dp"
+            android:layout_height="121dp"
+            android:background="#C9C9C9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="36dp"
+            android:text="마이페이지"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/intentButton" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="36dp"
+            android:text="팀 보기"
+            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/intentButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
