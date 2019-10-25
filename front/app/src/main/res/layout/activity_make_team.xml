@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="216dp"
         android:text="팀 생성"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MemberEmailText" />
@@ -94,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="216dp"
         android:text="돌아가기"
         app:layout_constraintStart_toEndOf="@+id/TeamMakeCommit"
         app:layout_constraintTop_toBottomOf="@+id/MemberEmailText" />
@@ -109,23 +109,6 @@
         app:layout_constraintBottom_toTopOf="@+id/TeamInfoTxt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TeamNameTxt" />
-
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="328dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailCheckText">
-
-        <LinearLayout
-            android:id="@+id/MemberLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 
     <EditText
         android:id="@+id/MemberEmailText"
@@ -147,5 +130,25 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/TeamMember"
         app:layout_constraintTop_toBottomOf="@+id/MemberEmailText" />
+
+    <TextView
+        android:id="@+id/addMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="추가된 맴버 :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmailCheckText" />
+
+    <TextView
+        android:id="@+id/MemberList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/addMember"
+        app:layout_constraintTop_toBottomOf="@+id/EmailCheckText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
