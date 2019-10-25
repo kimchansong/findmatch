@@ -4,10 +4,7 @@ import com.ssafy.springserver.Entity.User;
 import com.ssafy.springserver.Entity.UserDto;
 import com.ssafy.springserver.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = {"*"})
 @RestController
@@ -25,4 +22,19 @@ public class UserController {
         }else
             return null;
     }
+
+    @PostMapping("/user/insert/{userInfo}")
+    @ResponseBody
+    public void insertUser(@PathVariable("userInfo") UserDto user) {
+        try {
+            System.out.println("------------------------");
+
+        } catch (Exception e) {
+            System.out.println("오류캐치어");
+           e.printStackTrace();
+        }
+    }
+
+
+
 }

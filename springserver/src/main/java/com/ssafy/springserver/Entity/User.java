@@ -16,10 +16,10 @@ public class User {
     private @Column(name = "u_name") String userName;
     private @Column(name = "u_age") String userAge;
     private @Column(name = "u_phone") String userPhone;
-    private @Column(name = "u_point") String userPoint;
+    private @Column(name = "u_point") int userPoint;
 
     @Builder
-    User(String userId, String userName, String userAge, String userPhone, String userPoint){
+    User(String userId, String userName, String userAge, String userPhone, int userPoint){
         this.userId = userId;
         this.userName = userName;
         this.userAge = userAge;
