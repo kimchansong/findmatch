@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -27,17 +28,38 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.android.synthetic.main.activity_main.frame
+import kotlinx.android.synthetic.main.activity_main.pager
+import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //이미지 슬라이드
+        pager.adapter = MainPagerAdapter()
+        pager.offscreenPageLimit = 3
 
-
+        timer(period = 3000) {
+            runOnUiThread {
+                if (pager.currentItem ==0) {
+                    pager.currentItem = 1
+                } else if(pager.currentItem ==1){
+                    pager.currentItem = 2
+                }
+                else if(pager.currentItem ==2){
+                    pager.currentItem = 3
+                }
+                else if(pager.currentItem ==3){
+                    pager.currentItem = 0
+                }
+            }
+        }
         // HTTP 통신
         setRetrofit()
 
@@ -72,6 +94,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+    //
 
     // 데이터 저장하기
     private fun saveData(data: String){
