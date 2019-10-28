@@ -7,81 +7,82 @@
     tools:context=".Activity.MainActivity">
 
 
-        <Button
-            android:id="@+id/boardButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="72dp"
+        android:background="@drawable/selector"
+        android:text="로그인페이지"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/MakeTeamBtn"
+        app:layout_constraintEnd_toStartOf="@+id/MakeTeamBtn"
+        app:layout_constraintTop_toBottomOf="@+id/connection"
+        app:layout_constraintVertical_bias="1.0" />
 
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/footerselector"
-            android:text="게시판보기"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
-            app:layout_constraintTop_toTopOf="@+id/textView4" />
-
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="72dp"
-            android:background="@drawable/selector"
-            android:text="로그인페이지"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintEnd_toStartOf="@+id/MakeTeamBtn"
-            app:layout_constraintTop_toBottomOf="@+id/connection"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/MakeTeamBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="28dp"
-            android:background="@drawable/selector"
-            android:text="팀 생성"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/intentButton"
-            app:layout_constraintVertical_bias="0.0" />
+    <Button
+        android:id="@+id/MakeTeamBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector"
+        android:text="팀 생성"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="@+id/frame"
+        app:layout_constraintTop_toBottomOf="@+id/intentButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/intentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
-        android:layout_marginBottom="152dp"
 
+        android:layout_marginTop="296dp"
         android:background="@drawable/selector"
         android:text="인텐트하기"
-        app:layout_constraintBottom_toTopOf="@+id/boardButton"
-        app:layout_constraintStart_toEndOf="@+id/loginButton" />
+        app:layout_constraintEnd_toEndOf="@+id/MakeTeamBtn"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <Button
+        android:id="@+id/boardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="80dp"
+        android:background="@drawable/footerselector"
+        android:text="게시판보기"
+        app:layout_constraintEnd_toStartOf="@+id/MakeTeamBtn"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
     <Button
         android:id="@+id/connection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
-        android:layout_marginBottom="152dp"
         android:background="@drawable/selector"
         android:text="통신하기"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/boardButton"
         app:layout_constraintEnd_toStartOf="@+id/intentButton"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/MakeTeamBtn" />
+        app:layout_constraintStart_toStartOf="@+id/MakeTeamBtn"
+        app:layout_constraintTop_toTopOf="@+id/intentButton" />
 
     <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
+<!--
         <TextView
             android:id="@+id/textView4"
             android:layout_width="417dp"
@@ -92,7 +93,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/mypagebutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -110,24 +111,39 @@
             android:layout_marginEnd="28dp"
             android:text="팀 보기"
             android:background="@drawable/footerselector"
-            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintEnd_toStartOf="@+id/mypagebutton"
             app:layout_constraintTop_toTopOf="@+id/textView4" />
+-->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:elevation="4dp"
+        app:itemIconTint="@drawable/selector_bottom_nav"
+        app:itemTextColor="@drawable/selector_bottom_nav"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation" />
 
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="417dp"
         android:layout_height="250dp"
-        android:layout_marginBottom="256dp"
         android:background="@color/blue"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="412dp"
             android:layout_height="249dp"
-            android:layout_marginBottom="128dp"
             tools:context=".Activity.MainActivity"
             tools:ignore="HardcodedText">
 
@@ -135,34 +151,33 @@
                 android:id="@+id/pageOne"
                 style="@style/PageText"
                 android:text="Page One"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="90dp" />
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="-3dp" />
 
             <TextView
                 android:id="@+id/pageTwo"
                 style="@style/PageText"
                 android:text="Page Two"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="90dp" />
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="-3dp" />
 
             <TextView
                 android:id="@+id/pageThree"
                 style="@style/PageText"
                 android:text="Page Three"
                 android:textColor="@color/black"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="90dp" />
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="-3dp" />
 
             <TextView
                 android:id="@+id/pageFour"
                 style="@style/PageText"
                 android:text="Page Four"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="90dp" />
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="-3dp" />
 
         </androidx.viewpager.widget.ViewPager>
     </FrameLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

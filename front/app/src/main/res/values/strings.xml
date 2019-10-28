@@ -12,4 +12,9 @@
     <string name="firebase_status_fmt">Firebase User: %s</string>
     <string name="title_activity_board_adapter">BoardAdapter</string>
 
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
+
 </resources>
