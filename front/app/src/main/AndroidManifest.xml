@@ -19,6 +19,8 @@
         <activity android:name=".Activity.BoardActivity" />
         <activity android:name=".Activity.SigninActivity"></activity>
         <activity android:name=".Activity.MakeTeamActivity" />
+        <activity android:name=".Activity.MypageActivity"/>
+
         <activity
             android:name=".Activity.ResultActivity"
             android:parentActivityName=".Activity.MainActivity" />
