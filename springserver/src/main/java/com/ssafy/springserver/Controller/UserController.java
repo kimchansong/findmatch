@@ -17,12 +17,12 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/user/{userId}")
-    public User checkUser(@PathVariable("userId") String userId){
-        System.out.println(userId);
+    public int checkUser(@PathVariable("userId") String userId){
         if(userId != null){
             User user = userRepository.checkId(userId);
-            return user;
+            if(user != null) return 1;
+            else return 0;
         }else
-            return null;
+            return 0;
     }
 }

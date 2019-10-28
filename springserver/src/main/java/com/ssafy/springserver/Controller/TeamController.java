@@ -5,9 +5,11 @@ import com.ssafy.springserver.Repository.TeamJoinRequestRepository;
 import com.ssafy.springserver.Repository.TeamMemberRepository;
 import com.ssafy.springserver.Repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @CrossOrigin(origins = {"*"})
@@ -65,12 +67,12 @@ public class TeamController {
 
     // 팀 중복 조회
     @GetMapping("/duplicationCheck/{teamName}")
-    public Team checkTeamName(@PathVariable("teamName") String teamName){
+    public int checkTeamName(@PathVariable("teamName") String teamName){
         if(teamName != null){
-            Team team = teamRepository.findByTeamName(teamName);
-            return team;
+            if(teamRepository.findByTeamName(teamName) != null) return 1;
+            return 0;
         }
-        else return null;
+        else return 0;
     }
 
     // 팀 삭제
@@ -80,5 +82,30 @@ public class TeamController {
             return teamRepository.deleteTeam(teamName);
         }
         else return 0;
+    }
+
+    // 팀 생성
+    @PostMapping("/team/add")
+    public int addTeam(@RequestBody TeamDto team){
+        teamRepository.save(Team.builder()
+                .teamName(team.getTeamName())
+                .teamInfo(team.getTeamInfo())
+                .teamLocate(team.getTeamLocate()).build());
+
+        return 0;
+    }
+
+    // 팀원 추가
+    @PostMapping("/teamMember/add/{teamName}")
+    public int addTeamMember(@RequestBody List<String> teamMember, @PathVariable("teamName") String teamName){
+        for(String member : teamMember){
+            teamMemberRepository.save(TeamMember.builder()
+                    .teamName(teamName)
+                    .userId(member)
+                    .auth("팀원")
+                    .build());
+        }
+
+        return 0;
     }
 }

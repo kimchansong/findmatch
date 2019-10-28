@@ -16,8 +16,10 @@ public class TeamMember {
     private TeamMemberId teamMemberId;
     private @Column(name = "t_auth") String auth;
 
+
     @Builder
     TeamMember(String teamName, String userId, String auth){
+        teamMemberId = new TeamMemberId();
         teamMemberId.setTeamName(teamName);
         teamMemberId.setUserId(userId);
         this.auth = auth;
