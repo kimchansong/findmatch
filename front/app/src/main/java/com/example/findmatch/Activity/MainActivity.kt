@@ -116,13 +116,13 @@ class MainActivity : AppCompatActivity() {
             startActivity<MakeTeamActivity>()
         }
 
-        /*
+
         // 게시판 페이지로 이동
         boardButton.setOnClickListener {
             startActivity<BoardActivity>()
         }
 
-         */
+
 
         // 인텐트로 화면넘기기
         intentButton.setOnClickListener{
