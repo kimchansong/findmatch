@@ -12,12 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activity.BoardWriteActiviry"></activity>
         <activity
             android:name=".Adapter.BoardAdapter"
             android:label="@string/title_activity_board_adapter"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.BoardActivity" />
-        <activity android:name=".Activity.SigninActivity"></activity>
+        <activity android:name=".Activity.SigninActivity" />
         <activity android:name=".Activity.MakeTeamActivity" />
         <activity
             android:name=".Activity.ResultActivity"
