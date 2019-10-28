@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="boardType">
+        <item>자유게시판</item>
+        <item>타입인데</item>
+        <item>뭘</item>
+        <item>넣지?</item>
+        <item>기타</item>
+    </string-array>
+</resources>

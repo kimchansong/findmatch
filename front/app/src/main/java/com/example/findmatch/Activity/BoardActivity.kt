@@ -2,6 +2,8 @@ package com.example.findmatch.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import com.example.findmatch.Adapter.BoardAdapter
 import com.example.findmatch.DTO.BoardDto
@@ -10,6 +12,7 @@ import com.example.findmatch.R
 import kotlinx.android.synthetic.main.activity_board.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,7 +28,21 @@ class BoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
 
+        // 글쓰기 페이지 이동
+        insertButton.setOnClickListener {
+            startActivity<BoardWriteActiviry>()
+        }
+
         setRetrofit(this)
+    }
+
+
+
+    // 클릭했을
+    inner class ListListener : AdapterView.OnItemClickListener{
+        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            Toast.makeText(getApplicationContext(),boardList.get(position).toString(),Toast.LENGTH_LONG).show()
+        }
     }
 
 
@@ -57,6 +74,8 @@ class BoardActivity : AppCompatActivity() {
                     val boardAdapter =
                         BoardAdapter(boardActivity, boardList)
                     listBoard.adapter = boardAdapter
+                    var listener = ListListener()
+                    listBoard.setOnItemClickListener(listener)
                 }
             }
         })
