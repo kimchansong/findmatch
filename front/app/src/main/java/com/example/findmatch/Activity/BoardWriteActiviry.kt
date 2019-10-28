@@ -27,7 +27,6 @@ class BoardWriteActiviry : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.findmatch.R.layout.activity_board_write_activiry)
-
         val spn = findViewById(R.id.writeType) as Spinner
         val sAdapter = ArrayAdapter.createFromResource(this, com.example.findmatch.R.array.boardType, android.R.layout.simple_spinner_dropdown_item)
         writeType.setAdapter(sAdapter)
