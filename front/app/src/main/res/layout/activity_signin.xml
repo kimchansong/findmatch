@@ -69,7 +69,9 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/idTitle"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:focusableInTouchMode="false"
+        />
 
     <EditText
         android:id="@+id/nameText"
@@ -79,7 +81,9 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/nameTItle"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:focusableInTouchMode="false"
+        />
 
     <EditText
         android:id="@+id/ageText"

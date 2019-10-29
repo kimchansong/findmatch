@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_signin.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.jetbrains.anko.startActivity
@@ -179,20 +180,28 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
         var service = retrofit.create(UserService::class.java)
         var email :String? = ""
+        var name :String? = ""
         if(user!=null){
             email = user.email
+            name = user.displayName
         }
 
         val call: Call<Int> = service.requestUserOk(email!!)
 
+
         call.enqueue(object : Callback<Int> {
             override fun onFailure(call: Call<Int>, t: Throwable) {
-                startActivity<SigninActivity>()
+                print("실패")
             }
 
             override fun onResponse(call: Call<Int>, response: Response<Int>) {
-                if(response.body() == 0){
+                if(response.body() == 1){
                     startActivity<MainActivity>()
+                }else{
+                    startActivity<SigninActivity>(
+                        "userId" to email.toString(),
+                        "userName" to name.toString()
+                    )
                 }
             }
         })
