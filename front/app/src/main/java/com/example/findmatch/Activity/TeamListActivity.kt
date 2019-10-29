@@ -8,6 +8,7 @@ import com.example.findmatch.Adapter.TeamAdapter
 import com.example.findmatch.DTO.TeamMemberDto
 import com.example.findmatch.R
 import com.example.findmatch.Service.TeamService
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_team_list.*
 import kotlinx.android.synthetic.main.activity_team_manage.*
 import okhttp3.OkHttpClient
@@ -19,6 +20,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class TeamListActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+
     val teamList = mutableListOf<TeamMemberDto>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +39,9 @@ class TeamListActivity : AppCompatActivity() {
 
         var service = retrofit.create(TeamService::class.java)
 
-        val call: Call<Array<TeamMemberDto>> = service.requestMyTeam("test")
+        auth = FirebaseAuth.getInstance()
+        val email :String ?= auth.currentUser!!.email
+        val call: Call<Array<TeamMemberDto>> = service.requestMyTeam(email!!)
 
         call.enqueue(object : Callback<Array<TeamMemberDto>> {
             override fun onFailure(call: Call<Array<TeamMemberDto>>, t: Throwable) {
