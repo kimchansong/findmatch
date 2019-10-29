@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/find_match.iml" filepath="$PROJECT_DIR$/find_match.iml" />
+      <module fileurl="file://$PROJECT_DIR$/find_match.iml" filepath="$PROJECT_DIR$/find_match.iml" group="find_match" />
     </modules>
   </component>
 </project>
