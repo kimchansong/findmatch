@@ -35,6 +35,26 @@ public class TeamController {
         else return null;
     }
 
+    // 내팀 조회
+    @GetMapping("/myTeam/{userId}")
+    public List<TeamMemberDto> getMyTeam(@PathVariable("userId") String userId){
+        if(userId != null){
+            List<TeamMember> teamMember = teamMemberRepository.findByUserId(userId);
+
+            List<TeamMemberDto> teamMemberDtos = new ArrayList<>();
+            for (TeamMember member: teamMember) {
+                teamMemberDtos.add(new TeamMemberDto(
+                        member.getTeamMemberId().getTeamName(),
+                        member.getTeamMemberId().getUserId(),
+                        member.getAuth()));
+            }
+
+            return teamMemberDtos;
+        }
+        return null;
+    }
+
+
     // 팀원 조회
     @GetMapping("/teamMember/{teamName}")
     public List<TeamMemberDto> getTeamMember(@PathVariable("teamName") String teamName){

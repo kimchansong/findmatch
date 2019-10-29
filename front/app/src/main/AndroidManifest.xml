@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.BoardWriteActiviry"></activity>
+        <activity
+            android:name=".Activity.TeamListActivity"
+            android:label="@string/title_activity_team_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activity.BoardWriteActiviry" />
         <activity
             android:name=".Adapter.BoardAdapter"
             android:label="@string/title_activity_board_adapter"
@@ -20,8 +24,7 @@
         <activity android:name=".Activity.BoardActivity" />
         <activity android:name=".Activity.SigninActivity" />
         <activity android:name=".Activity.MakeTeamActivity" />
-        <activity android:name=".Activity.MypageActivity"/>
-
+        <activity android:name=".Activity.MypageActivity" />
         <activity
             android:name=".Activity.ResultActivity"
             android:parentActivityName=".Activity.MainActivity" />

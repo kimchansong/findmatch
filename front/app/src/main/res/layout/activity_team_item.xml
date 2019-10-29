@@ -6,14 +6,13 @@
     android:layout_height="wrap_content"
     tools:context=".Activity.TeamListActivity">
 
-    <ListView
-        android:id="@+id/teamListView"
-        android:layout_width="350dp"
-        android:layout_height="210dp"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:overScrollMode="never"
-        android:scrollbars="none"
+    <TextView
+        android:id="@+id/teamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="팀 이름"
+        android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
