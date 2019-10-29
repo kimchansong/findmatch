@@ -14,6 +14,10 @@ interface TeamService{
     @GET("team/sk")
     fun requestTeam():Call<TeamDto>
 
+    // 내 팀 불러오기
+    @GET("myTeam/{userId}")
+    fun requestMyTeam(@Path("userId") userId:String):Call<Array<TeamMemberDto>>
+
     // 팀원 불러오기
     @GET("teamMember/sk")
     fun requestTeamMember():Call<Array<TeamMemberDto>>

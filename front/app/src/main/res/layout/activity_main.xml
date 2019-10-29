@@ -32,18 +32,18 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintStart_toStartOf="@+id/frame"
-        app:layout_constraintTop_toBottomOf="@+id/intentButton"
+        app:layout_constraintTop_toBottomOf="@+id/myTeamViewButton"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/intentButton"
+        android:id="@+id/myTeamViewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
 
         android:layout_marginTop="296dp"
         android:background="@drawable/selector"
-        android:text="인텐트하기"
+        android:text="내팀보기"
         app:layout_constraintEnd_toEndOf="@+id/MakeTeamBtn"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/loginButton"
@@ -69,10 +69,10 @@
         android:background="@drawable/selector"
         android:text="통신하기"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@+id/intentButton"
+        app:layout_constraintEnd_toStartOf="@+id/myTeamViewButton"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/MakeTeamBtn"
-        app:layout_constraintTop_toTopOf="@+id/intentButton" />
+        app:layout_constraintTop_toTopOf="@+id/myTeamViewButton" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"

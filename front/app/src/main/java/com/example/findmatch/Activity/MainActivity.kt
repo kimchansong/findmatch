@@ -82,33 +82,30 @@ class MainActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             startActivity<LoginActivity>()
         }
+
+        // 팀 생성 페이지
         MakeTeamBtn.setOnClickListener {
             startActivity<MakeTeamActivity>()
         }
-
 
         // 게시판 페이지로 이동
         boardButton.setOnClickListener {
             startActivity<BoardActivity>()
         }
 
-
-
-        // 인텐트로 화면넘기기
-        intentButton.setOnClickListener{
+        // 내 팀 목록보기
+        myTeamViewButton.setOnClickListener{
 
             // 보낼 데이터 저장
-            saveData("hihi")
+            // saveData("hihi")
 
-            val intent = Intent(this, TeamManageActivity::class.java)
             // 데이터 보내기
-            intent.putExtra("hi", "hihi")
-            startActivity(intent)
+            // intent.putExtra("hi", "hihi")
+            startActivity<TeamListActivity>()
         }
 
 
     }
-    //
 
     // 데이터 저장하기
     private fun saveData(data: String){

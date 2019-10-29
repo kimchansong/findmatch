@@ -12,6 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activity.TeamListActivity"
+            android:label="@string/title_activity_team_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Activity.BoardDetailActivity"></activity>
         <activity android:name=".Activity.BoardWriteActiviry" />
         <activity
