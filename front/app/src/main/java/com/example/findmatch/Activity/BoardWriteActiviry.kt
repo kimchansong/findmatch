@@ -30,7 +30,7 @@ class BoardWriteActiviry : AppCompatActivity() {
         val spn = findViewById(R.id.writeType) as Spinner
         val sAdapter = ArrayAdapter.createFromResource(this, com.example.findmatch.R.array.boardType, android.R.layout.simple_spinner_dropdown_item)
         writeType.setAdapter(sAdapter)
-        var type:String = ""
+        var type = "0"
         spn.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
@@ -45,7 +45,7 @@ class BoardWriteActiviry : AppCompatActivity() {
             val title = writeTitle.text.toString()
             val content = writeContent.text.toString()
 
-            var item : BoardDto = BoardDto(0,"u_id",title,content,3,nowTime())
+            var item : BoardDto = BoardDto(0,"Admin",title,content,3,nowTime())
             /*
             println("시간 : " + nowTime())
             println("제목 : " + title)
