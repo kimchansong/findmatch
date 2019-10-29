@@ -29,7 +29,7 @@ class SigninActivity : AppCompatActivity() {
         idText.setText(userId)
         nameText.setText(userName)
 
-        SignInButton.setOnClickListener{
+        editButton.setOnClickListener{
             insertUser()
             startActivity<MainActivity>()
         }
