@@ -4,10 +4,7 @@ import com.ssafy.springserver.Entity.User;
 import com.ssafy.springserver.Entity.UserDto;
 import com.ssafy.springserver.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = {"*"})
 @RestController
@@ -25,4 +22,19 @@ public class UserController {
         }else
             return 0;
     }
+
+    @PostMapping("/user/insert")
+    public int insertUser(@RequestBody UserDto userDto) {
+        userRepository.save(User.builder()
+                .userId(userDto.getUserId())
+                .userName(userDto.getUserName())
+                .userAge(userDto.getUserAge())
+                .userPhone(userDto.getUserPhone())
+                .userPoint(userDto.getUserPoint())
+                .build());
+        return 0;
+    }
+
+
+
 }
