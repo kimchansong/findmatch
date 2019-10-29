@@ -104,6 +104,10 @@ class MainActivity : AppCompatActivity() {
             startActivity<TeamListActivity>()
         }
 
+        connection.setOnClickListener {
+            startActivity<MypageActivity>()
+        }
+
 
     }
 

@@ -15,7 +15,7 @@ public class User {
     @Id
     private @Column(name = "u_id") String userId;
     private @Column(name = "u_name") String userName;
-    private @Column(name = "u_age") String userAge;
+    private @Column(name = "u_age") int userAge;
     private @Column(name = "u_phone") String userPhone;
     private @Column(name = "u_point") int userPoint;
 
@@ -24,7 +24,7 @@ public class User {
     private Collection<TeamMember> teamMemberCollection;
 
     @Builder
-    User(String userId, String userName, String userAge, String userPhone, int userPoint){
+    User(String userId, String userName, int userAge, String userPhone, int userPoint){
         this.userId = userId;
         this.userName = userName;
         this.userAge = userAge;
