@@ -68,7 +68,7 @@ class BoardActivity : AppCompatActivity() {
 
         call.enqueue(object : Callback<Array<BoardDto>> {
             override fun onFailure(call: Call<Array<BoardDto>>, t: Throwable) {
-                Toast.makeText(applicationContext,"실패", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"불러오기 실패", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<Array<BoardDto>>, response: Response<Array<BoardDto>>) {
