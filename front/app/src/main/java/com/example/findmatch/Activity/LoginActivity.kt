@@ -37,9 +37,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
         signInButton.setOnClickListener(this)
-        signOutButton.setOnClickListener(this)
-        disconnectButton.setOnClickListener(this)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -48,6 +47,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         auth = FirebaseAuth.getInstance()
+
 
 
     }
@@ -115,17 +115,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     private fun updateUI(user: FirebaseUser?) {
         hideProgressDialog()
         if (user != null) {
-            status.text = getString(R.string.google_status_fmt, user.email)
-            detail.text = getString(R.string.firebase_status_fmt, user.uid)
-
-            signInButton.visibility = View.GONE
-            signOutAndDisconnect.visibility = View.VISIBLE
+            startActivity<MainActivity>()
         } else {
-            status.setText(R.string.signed_out)
-            detail.text = null
-
             signInButton.visibility = View.VISIBLE
-            signOutAndDisconnect.visibility = View.GONE
         }
     }
 
@@ -160,8 +152,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         val i = v.id
         when (i) {
             R.id.signInButton -> signIn()
-            R.id.signOutButton -> signOut()
-            R.id.disconnectButton -> revokeAccess()
 
         }
     }
@@ -195,7 +185,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
                 if(response.body() != null){
-                    startActivity<MainActivity>()
                 }else{
                     startActivity<SigninActivity>(
                         "userId" to email.toString(),
