@@ -10,12 +10,12 @@ import android.widget.Toast
 import com.example.findmatch.DTO.BoardDto
 import com.example.findmatch.R
 import com.example.findmatch.Service.BoardService
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_board_detail.*
-import kotlinx.android.synthetic.main.activity_board_write_activiry.*
-import kotlinx.android.synthetic.main.activity_board_write_activiry.deleteButton
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeContent
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeTitle
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeType
+import kotlinx.android.synthetic.main.activity_team_member_item.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.jetbrains.anko.startActivity
@@ -24,9 +24,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.SimpleDateFormat
 import java.util.*
 
 class BoardDetailActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +42,15 @@ class BoardDetailActivity : AppCompatActivity() {
         val spn = findViewById(R.id.writeType) as Spinner
         val sAdapter = ArrayAdapter.createFromResource(this, com.example.findmatch.R.array.boardType, android.R.layout.simple_spinner_dropdown_item)
         writeType.setAdapter(sAdapter)
-        var type:String = ""
+        var type:Int = 1
         spn.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                type = spn.getItemAtPosition(position).toString()
+                val source = spn.getItemAtPosition(position).toString()
+                val result = source.split(".")
+                type = result[0].toInt()
             }
 
         }
@@ -56,6 +60,12 @@ class BoardDetailActivity : AppCompatActivity() {
         }
 
         updateButton.setOnClickListener{
+            auth = FirebaseAuth.getInstance()
+            val title = writeTitle.text.toString()
+            val content = writeContent.text.toString()
+            val email = auth.currentUser!!.email.toString()
+            var item : BoardDto = BoardDto(num,email,title,content,type,nowTime())
+            updateBoard(item)
         }
     }
 
@@ -70,12 +80,12 @@ class BoardDetailActivity : AppCompatActivity() {
 
         call.enqueue(object : Callback<Int> {
             override fun onFailure(call: Call<Int>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Toast.makeText(applicationContext,"삭제 실패",Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<Int>, response: Response<Int>) {
                 if(response.body()!=null){
-                    Toast.makeText(applicationContext,"삭제성공",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"삭제 성공",Toast.LENGTH_SHORT).show()
                     startActivity<BoardActivity>()
                 }
             }
@@ -83,42 +93,36 @@ class BoardDetailActivity : AppCompatActivity() {
     }
 
 
-    private fun writeBoard(item : BoardDto){
+    private fun updateBoard(item : BoardDto){
         val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .client(createOkHttpClient())
             .build()
 
         var service = retrofit.create(BoardService::class.java)
-        val call: Call<BoardDto> =  service.writeBoard(item)
-
-        call.enqueue(object : Callback<BoardDto> {
-            override fun onFailure(call: Call<BoardDto>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val call: Call<Int> =  service.updateBoard(item)
+        println("업데이트 : " + item.toString())
+        call.enqueue(object : Callback<Int> {
+            override fun onFailure(call: Call<Int>, t: Throwable) {
+                Toast.makeText(applicationContext,"수정 실패",Toast.LENGTH_SHORT).show()
             }
 
-            override fun onResponse(call: Call<BoardDto>, response: Response<BoardDto>) {
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
                 if(response.body()!=null){
+                    Toast.makeText(applicationContext,"수정 성공",Toast.LENGTH_SHORT).show()
                     startActivity<BoardActivity>()
                 }
             }
+
         })
     }
 
 
     private fun nowTime(): String {
-        val tz = TimeZone.getTimeZone("Asia/Seoul")
-        val gc = GregorianCalendar(tz)
+        val dt = Date()
+        val full_sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
-        var year = gc.get(GregorianCalendar.YEAR).toString()
-        var month = (gc.get(GregorianCalendar.MONTH)+1).toString()
-        var day = gc.get(GregorianCalendar.DATE).toString()
-
-        var hour= gc.get(GregorianCalendar.HOUR).toString()
-        var min = gc.get(GregorianCalendar.MINUTE).toString()
-        var sec = gc.get(GregorianCalendar.SECOND).toString()
-
-        return year + " " + month + " " + day + " " + hour + " " + min + " " + sec
+        return full_sdf.format(dt).toString()
     }
 
     private fun createOkHttpClient(): OkHttpClient {

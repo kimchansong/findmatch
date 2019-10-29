@@ -20,5 +20,9 @@ interface BoardService{
     @POST("board/delete/{num}")
     fun deleteBoard(@Path("num") num: Int):Call<Int>
 
+    // 글 수정
+    @POST("board/update")
+    fun updateBoard(@Body item: BoardDto):Call<Int>
+
 
 }

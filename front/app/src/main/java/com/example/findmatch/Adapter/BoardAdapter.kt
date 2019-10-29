@@ -24,7 +24,7 @@ class BoardAdapter (val context : Context, val boardList: List<BoardDto>) : Base
 
         val boardItem = boardList[position]
         number.text = boardItem.b_num.toString()
-        userId.text = boardItem.User_u_id
+        userId.text = boardItem.user_u_id
         title.text = boardItem.b_title
         content.text = boardItem.b_content
         type.text = boardItem.b_type.toString()
@@ -34,6 +34,7 @@ class BoardAdapter (val context : Context, val boardList: List<BoardDto>) : Base
     }
 
     override fun getItem(position: Int): Any {
+
         return boardList[position]
     }
 

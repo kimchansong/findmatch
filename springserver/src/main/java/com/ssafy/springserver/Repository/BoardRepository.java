@@ -8,5 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface BoardRepository extends JpaRepository<Board, Integer> {
+    @Query("SELECT board FROM Board board order by b_num desc")
+    List<Board> allBoard();
 }
