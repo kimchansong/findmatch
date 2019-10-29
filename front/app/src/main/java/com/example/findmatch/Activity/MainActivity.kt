@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.findmatch.R
 import com.example.findmatch.DTO.TeamDto
 import com.example.findmatch.Service.TeamService
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
    // private val KEY_POSITION = "keyPosition"
 
    // private var navPosition: BottomNavigationPosition = BottomNavigationPosition.HOME
+   private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,6 +82,8 @@ class MainActivity : AppCompatActivity() {
 */
         // 로그인 페이지
         loginButton.setOnClickListener {
+            auth = FirebaseAuth.getInstance()
+            auth.signOut()
             startActivity<LoginActivity>()
         }
 
