@@ -14,25 +14,25 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/user/{userId}")
-    public User checkUser(@PathVariable("userId") String userId){
-        System.out.println(userId);
+    public int checkUser(@PathVariable("userId") String userId){
         if(userId != null){
             User user = userRepository.checkId(userId);
-            return user;
+            if(user != null) return 1;
+            else return 0;
         }else
-            return null;
+            return 0;
     }
 
-    @PostMapping("/user/insert/{userInfo}")
-    @ResponseBody
-    public void insertUser(@PathVariable("userInfo") UserDto user) {
-        try {
-            System.out.println("------------------------");
-
-        } catch (Exception e) {
-            System.out.println("오류캐치어");
-           e.printStackTrace();
-        }
+    @PostMapping("/user/insert")
+    public int insertUser(@RequestBody UserDto userDto) {
+        userRepository.save(User.builder()
+                .userId(userDto.getUserId())
+                .userName(userDto.getUserName())
+                .userAge(userDto.getUserAge())
+                .userPhone(userDto.getUserPhone())
+                .userPoint(userDto.getUserPoint())
+                .build());
+        return 0;
     }
 
 

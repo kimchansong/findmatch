@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @NoArgsConstructor
@@ -17,6 +18,10 @@ public class User {
     private @Column(name = "u_age") String userAge;
     private @Column(name = "u_phone") String userPhone;
     private @Column(name = "u_point") int userPoint;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="Team_t_name")
+    private Collection<TeamMember> teamMemberCollection;
 
     @Builder
     User(String userId, String userName, String userAge, String userPhone, int userPoint){

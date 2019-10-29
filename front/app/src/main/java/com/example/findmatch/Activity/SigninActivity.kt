@@ -44,7 +44,7 @@ class SigninActivity : AppCompatActivity() {
         var service = retrofit.create(UserService::class.java)
 
         val userId = idText.text.toString()
-        val userName = "dsfkne"
+        val userName = nameText.text.toString()
         val userAge = ageText.text.toString()
         val userPhone = phoneText.text.toString()
         val userPoint = 0
@@ -53,13 +53,14 @@ class SigninActivity : AppCompatActivity() {
 
         val call = service.insertUser(userInfo)
 
-        call.enqueue(object : Callback<UserDto> {
-            override fun onFailure(call: Call<UserDto>, t: Throwable) {
+        call.enqueue(object : Callback<Int> {
+            override fun onFailure(call: Call<Int>, t: Throwable) {
                 Toast.makeText(applicationContext,"실패",Toast.LENGTH_SHORT).show()
             }
 
-            override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
-                if(response.body()!=null){
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                if(response.body() == 0){
+                    Toast.makeText(applicationContext,"회원가입완료",Toast.LENGTH_SHORT).show()
                 }
             }
         })

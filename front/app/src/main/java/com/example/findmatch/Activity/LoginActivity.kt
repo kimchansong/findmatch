@@ -186,19 +186,22 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             name = user.displayName
         }
 
-        val call: Call<UserDto> = service.requestUserOk(email!!)
+        val call: Call<Int> = service.requestUserOk(email!!)
 
-        call.enqueue(object : Callback<UserDto> {
-            override fun onFailure(call: Call<UserDto>, t: Throwable) {
-                startActivity<SigninActivity>(
-                    "userId" to email.toString(),
-                    "userName" to name.toString()
-                )
+
+        call.enqueue(object : Callback<Int> {
+            override fun onFailure(call: Call<Int>, t: Throwable) {
+                print("실패")
             }
 
-            override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
-                if(response.body()!=null){
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                if(response.body() == 1){
                     startActivity<MainActivity>()
+                }else{
+                    startActivity<SigninActivity>(
+                        "userId" to email.toString(),
+                        "userName" to name.toString()
+                    )
                 }
             }
         })

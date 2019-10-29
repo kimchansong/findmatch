@@ -1,10 +1,10 @@
 package com.example.findmatch.Activity
 
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.view.View
 import android.widget.Toast
 import com.example.findmatch.R
 import com.example.findmatch.DTO.TeamDto
@@ -18,12 +18,53 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.android.synthetic.main.activity_main.pager
+import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
+   // private val KEY_POSITION = "keyPosition"
+
+   // private var navPosition: BottomNavigationPosition = BottomNavigationPosition.HOME
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+      //  restoreSaveInstanceState(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //이미지 슬라이드
+        pager.adapter = MainPagerAdapter()
+        pager.offscreenPageLimit = 3
+
+        timer(period = 3000) {
+            runOnUiThread {
+                if (pager.currentItem ==0) {
+                    pager.currentItem = 1
+                } else if(pager.currentItem ==1){
+                    pager.currentItem = 2
+                }
+                else if(pager.currentItem ==2){
+                    pager.currentItem = 3
+                }
+                else if(pager.currentItem ==3){
+                    pager.currentItem = 0
+                }
+            }
+        }
+        //바텀
+
+/*
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).apply {
+            // This is required in Support Library 27 or lower:
+            // bottomNavigation.disableShiftMode()
+            active(navPosition.position) // Extension function
+            setOnNavigationItemSelectedListener { item ->
+                navPosition = findNavigationPositionById(item.itemId)
+                switchFragment(navPosition)
+            }
+        }
+
+        initFragment(savedInstanceState)
+*/
         // HTTP 통신
         setRetrofit()
 
@@ -31,6 +72,12 @@ class MainActivity : AppCompatActivity() {
         // 데이터 값 읽어오기
         loadData()
 
+        //마이 페이지
+ /*       mypagebutton.setOnClickListener {
+
+            startActivity<MypageActivity>()
+        }
+*/
         // 로그인 페이지
         loginButton.setOnClickListener {
             startActivity<LoginActivity>()
@@ -39,10 +86,13 @@ class MainActivity : AppCompatActivity() {
             startActivity<MakeTeamActivity>()
         }
 
+
         // 게시판 페이지로 이동
         boardButton.setOnClickListener {
             startActivity<BoardActivity>()
         }
+
+
 
         // 인텐트로 화면넘기기
         intentButton.setOnClickListener{
@@ -56,16 +106,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        inputButton.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?) {
-                if(nameEdit.text.isBlank()){
-                    greetText.text = "이름이 없습니다."
-                }else{
-                    greetText.text = "${nameEdit.text}님 반갑습니다."
-                }
-            }
-        })
+
     }
+    //
 
     // 데이터 저장하기
     private fun saveData(data: String){
@@ -114,4 +157,40 @@ class MainActivity : AppCompatActivity() {
         builder.addInterceptor(interceptor)
         return builder.build()
     }
+/*
+    //바텀
+    override fun onSaveInstanceState(outState: Bundle?) {
+        // Store the current navigation position.
+        outState?.putInt(KEY_POSITION, navPosition.id)
+        super.onSaveInstanceState(outState)
+    }
+//바텀
+    private fun restoreSaveInstanceState(savedInstanceState: Bundle?) {
+        // Restore the current navigation position.
+        savedInstanceState?.getInt(KEY_POSITION, BottomNavigationPosition.HOME.id)?.also {
+            navPosition = findNavigationPositionById(it)
+        }
+    }
+
+    private fun initFragment(savedInstanceState: Bundle?) {
+        savedInstanceState ?: switchFragment(BottomNavigationPosition.HOME)
+    }
+
+    /**
+     * Immediately execute transactions with FragmentManager#executePendingTransactions.
+     */
+    private fun switchFragment(navPosition: BottomNavigationPosition): Boolean {
+        return findFragment(navPosition).let {
+            if (it.isAdded) return false
+            supportFragmentManager.detach() // Extension function
+            supportFragmentManager.attach(it, navPosition.getTag()) // Extension function
+            supportFragmentManager.executePendingTransactions()
+        }
+    }
+
+    private fun findFragment(position: BottomNavigationPosition): Fragment {
+        return supportFragmentManager.findFragmentByTag(position.getTag()) ?: position.createFragment()
+    }
+*/
+
 }
