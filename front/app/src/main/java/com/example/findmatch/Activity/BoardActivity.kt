@@ -1,5 +1,6 @@
 package com.example.findmatch.Activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ import com.example.findmatch.DTO.BoardDto
 import com.example.findmatch.Service.BoardService
 import com.example.findmatch.R
 import kotlinx.android.synthetic.main.activity_board.*
+import kotlinx.android.synthetic.main.activity_board_write_activiry.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.jetbrains.anko.startActivity
@@ -41,7 +43,13 @@ class BoardActivity : AppCompatActivity() {
     // 클릭했을
     inner class ListListener : AdapterView.OnItemClickListener{
         override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            Toast.makeText(getApplicationContext(),boardList.get(position).toString(),Toast.LENGTH_LONG).show()
+
+            startActivity<BoardDetailActivity>(
+                "title" to boardList.get(position).b_title,
+               "content" to  boardList.get(position).b_content,
+                "date" to boardList.get(position).b_date,
+                "num" to boardList.get(position).b_num
+            )
         }
     }
 
