@@ -45,7 +45,7 @@ class SigninActivity : AppCompatActivity() {
 
         val userId = idText.text.toString()
         val userName = nameText.text.toString()
-        val userAge = ageText.text.toString()
+        val userAge :Int = Integer.parseInt(ageText.text.toString())
         val userPhone = phoneText.text.toString()
         val userPoint = 0
 

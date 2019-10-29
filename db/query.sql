@@ -38,7 +38,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `test`.`User` (
   `u_id` VARCHAR(45) NOT NULL,
   `u_name` VARCHAR(45) NOT NULL,
-  `u_age` VARCHAR(45) NOT NULL,
+  `u_age` INT NOT NULL,
   `u_phone` VARCHAR(45) NOT NULL,
   `u_point` INT NOT NULL,
   PRIMARY KEY (`u_id`))
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `test`.`board` (
   `b_title` VARCHAR(45) NOT NULL,
   `b_content` VARCHAR(45) NULL,
   `b_type` INT NOT NULL,
-  `b_date` datetime NOT NULL,
+  `b_date` DATETIME NOT NULL,
   PRIMARY KEY (`b_num`),
   INDEX `fk_board_User1_idx` (`User_u_id` ASC) VISIBLE,
   CONSTRAINT `fk_board_User1`
@@ -199,4 +199,4 @@ select * from matching;
 insert into matching(m_num,m_status,m_uid,m_hometeam) values(0,"매칭중","홍길동","기아타이거즈");
 insert into matching_away values(1,"sk");
 select User_u_id from Team_has_User WHERE Team_t_name="기아타이거즈";
-delete from user where u_id = "ydk7819@gmail.com";
+select * from board order by b_num desc;

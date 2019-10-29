@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.example.findmatch.DTO.TeamDto
+import com.example.findmatch.DTO.UserDto
 import com.example.findmatch.R
 import com.example.findmatch.Service.TeamService
 import kotlinx.android.synthetic.main.activity_make_team.*
@@ -88,16 +89,16 @@ class MakeTeamActivity : AppCompatActivity() {
 
         val memberEmail = memberEmailText.text.toString()
         var service = retrofit.create(UserService::class.java)
-        val call : Call<Int> = service.requestUserOk(memberEmail)
-        call.enqueue(object : Callback<Int>{
+        val call : Call<UserDto> = service.requestUserOk(memberEmail)
+        call.enqueue(object : Callback<UserDto>{
 
-            override fun onFailure(call: Call<Int>, t: Throwable) {
+            override fun onFailure(call: Call<UserDto>, t: Throwable) {
                 Toast.makeText(applicationContext,"실패",Toast.LENGTH_SHORT).show()
             }
 
-            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+            override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
                 // 유저가 있을 경우
-                if(response.body() == 1){
+                if(response.body() != null){
                     if(teamMember.contains(memberEmail)){
                         emailCheckText.setText("이미 등록된 맴버입니다.")
                         emailCheckText.setTextColor(Color.RED)

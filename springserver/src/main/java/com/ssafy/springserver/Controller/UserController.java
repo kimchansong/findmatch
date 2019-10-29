@@ -14,13 +14,14 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/user/{userId}")
-    public int checkUser(@PathVariable("userId") String userId){
+    public User checkUser(@PathVariable("userId") String userId){
         if(userId != null){
             User user = userRepository.checkId(userId);
-            if(user != null) return 1;
-            else return 0;
+            System.out.println(user.toString());
+            if(user != null) return user;
+            else return null;
         }else
-            return 0;
+            return null;
     }
 
     @PostMapping("/user/insert")
@@ -32,9 +33,22 @@ public class UserController {
                 .userPhone(userDto.getUserPhone())
                 .userPoint(userDto.getUserPoint())
                 .build());
-        return 0;
+        return 1;
     }
 
+    @PostMapping("/user/update")
+    @ResponseBody
+    public int updateBoard(@RequestBody UserDto user){
+
+        User target =  userRepository.getOne(user.getUserId());
+        target.setUserName(user.getUserName());
+        target.setUserAge(user.getUserAge());
+        target.setUserPhone(user.getUserPhone());
+        target.setUserPoint(user.getUserPoint());
+
+        userRepository.save(target);
+        return 1;
+    }
 
 
 }
