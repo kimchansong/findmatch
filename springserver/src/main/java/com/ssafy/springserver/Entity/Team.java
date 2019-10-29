@@ -3,6 +3,7 @@ package com.ssafy.springserver.Entity;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -17,7 +18,7 @@ public class Team {
     private @Column(name = "t_info") String teamInfo;
     private @Column(name = "t_locate") String teamLocate;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name="Team_t_name")
     private Collection<TeamMember> teamMemberCollection;
 

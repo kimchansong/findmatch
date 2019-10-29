@@ -2,6 +2,7 @@ package com.example.findmatch.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.findmatch.*
 import com.example.findmatch.Adapter.TeamJoinListAdapter
@@ -23,21 +24,23 @@ class TeamManageActivity : AppCompatActivity() {
     var team : TeamDto? = null
     val teamMemberList = mutableListOf<TeamMemberDto>()
     val teamJoinList = mutableListOf<TeamJoinDto>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team_manage)
+        val myTeamName = intent.getStringExtra("teamName").toString()
 
-        getTeam()
-        getTeamMember(this)
-        getTeamJoinRequest(this)
+        getTeam(myTeamName)
+        getTeamMember(this, myTeamName)
+        getTeamJoinRequest(this, myTeamName)
 
         teamDeleteBtn.setOnClickListener{
-            deleteTeam()
+            deleteTeam(myTeamName)
         }
     }
 
     // 팀 정보 불러오기
-    private fun getTeam() {
+    private fun getTeam(myTeamName:String) {
         val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .client(createOkHttpClient())
@@ -45,7 +48,7 @@ class TeamManageActivity : AppCompatActivity() {
 
         var service = retrofit.create(TeamService::class.java)
 
-        val call: Call<TeamDto> = service.requestTeam()
+        val call: Call<TeamDto> = service.requestTeam(myTeamName)
 
         call.enqueue(object : Callback<TeamDto> {
             override fun onFailure(call: Call<TeamDto>, t: Throwable) {
@@ -67,7 +70,7 @@ class TeamManageActivity : AppCompatActivity() {
     }
 
     // 멤버 불러오기
-    private fun getTeamMember(teamManageActivity: TeamManageActivity){
+    private fun getTeamMember(teamManageActivity: TeamManageActivity, myTeamName:String){
         val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .client(createOkHttpClient())
@@ -75,7 +78,7 @@ class TeamManageActivity : AppCompatActivity() {
 
         var service = retrofit.create(TeamService::class.java)
 
-        val call: Call<Array<TeamMemberDto>> = service.requestTeamMember()
+        val call: Call<Array<TeamMemberDto>> = service.requestTeamMember(myTeamName)
 
         call.enqueue(object : Callback<Array<TeamMemberDto>> {
             override fun onFailure(call: Call<Array<TeamMemberDto>>, t: Throwable) {
@@ -102,7 +105,7 @@ class TeamManageActivity : AppCompatActivity() {
     }
 
     // 팀 가입 요청 불러오기
-    private fun getTeamJoinRequest(teamManageActivity: TeamManageActivity){
+    private fun getTeamJoinRequest(teamManageActivity: TeamManageActivity, myTeamName: String){
         val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .client(createOkHttpClient())
@@ -110,7 +113,7 @@ class TeamManageActivity : AppCompatActivity() {
 
         var service = retrofit.create(TeamService::class.java)
 
-        val call: Call<Array<TeamJoinDto>> = service.requestTeamJoin()
+        val call: Call<Array<TeamJoinDto>> = service.requestTeamJoin(myTeamName)
 
         call.enqueue(object : Callback<Array<TeamJoinDto>> {
             override fun onFailure(call: Call<Array<TeamJoinDto>>, t: Throwable) {
@@ -137,7 +140,9 @@ class TeamManageActivity : AppCompatActivity() {
     }
 
     // 팀 삭제
-    private fun deleteTeam(){
+    private fun deleteTeam(myTeamName: String){
+        Log.d("DELETE", myTeamName)
+
         val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .client(createOkHttpClient())
@@ -145,7 +150,7 @@ class TeamManageActivity : AppCompatActivity() {
 
         var service = retrofit.create(TeamService::class.java)
 
-        val call: Call<Boolean> = service.requestTeamDelete()
+        val call: Call<Boolean> = service.requestTeamDelete(myTeamName)
 
         call.enqueue(object: Callback<Boolean>{
             override fun onFailure(call: Call<Boolean>, t: Throwable) {

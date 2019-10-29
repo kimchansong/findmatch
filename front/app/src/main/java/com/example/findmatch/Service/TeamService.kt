@@ -11,24 +11,24 @@ import retrofit2.http.Path
 
 interface TeamService{
     // 팀 정보 불러오기
-    @GET("team/sk")
-    fun requestTeam():Call<TeamDto>
+    @GET("team/{teamName}")
+    fun requestTeam(@Path("teamName") teamName:String):Call<TeamDto>
 
     // 내 팀 불러오기
     @GET("myTeam/{userId}")
     fun requestMyTeam(@Path("userId") userId:String):Call<Array<TeamMemberDto>>
 
     // 팀원 불러오기
-    @GET("teamMember/sk")
-    fun requestTeamMember():Call<Array<TeamMemberDto>>
+    @GET("teamMember/{teamName}")
+    fun requestTeamMember(@Path("teamName") teamName:String):Call<Array<TeamMemberDto>>
 
     // 팀 가입 요청 리스트 불러오기
-    @GET("teamJoinRequest/sk")
-    fun requestTeamJoin():Call<Array<TeamJoinDto>>
+    @GET("teamJoinRequest/{teamName}")
+    fun requestTeamJoin(@Path("teamName") teamName:String):Call<Array<TeamJoinDto>>
 
     // 팀 삭제
-    @POST("team/delete/sk")
-    fun requestTeamDelete():Call<Boolean>
+    @POST("team/delete/{teamName}")
+    fun requestTeamDelete(@Path("teamName") teamName:String):Call<Boolean>
 
     // 팀 중복 체크
     @GET("duplicationCheck/{teamName}")

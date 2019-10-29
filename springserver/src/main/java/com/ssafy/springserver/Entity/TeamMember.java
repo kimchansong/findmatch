@@ -16,7 +16,6 @@ public class TeamMember {
     private TeamMemberId teamMemberId;
     private @Column(name = "t_auth") String auth;
 
-
     @Builder
     TeamMember(String teamName, String userId, String auth){
         teamMemberId = new TeamMemberId();
@@ -24,4 +23,8 @@ public class TeamMember {
         teamMemberId.setUserId(userId);
         this.auth = auth;
     }
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "t_name")
+    private Team team;
 }

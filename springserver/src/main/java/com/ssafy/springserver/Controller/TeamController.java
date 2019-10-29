@@ -54,7 +54,6 @@ public class TeamController {
         return null;
     }
 
-
     // 팀원 조회
     @GetMapping("/teamMember/{teamName}")
     public List<TeamMemberDto> getTeamMember(@PathVariable("teamName") String teamName){
@@ -96,10 +95,12 @@ public class TeamController {
     }
 
     // 팀 삭제
-    @PostMapping("/teamDelete/{teamName}")
+    @PostMapping("/team/delete/{teamName}")
     public int deleteTeamRequest(@PathVariable("teamName") String teamName){
+        System.out.println(teamName);
         if(teamName != null){
-            return teamRepository.deleteTeam(teamName);
+            teamRepository.deleteById(teamName);
+            return 1;
         }
         else return 0;
     }

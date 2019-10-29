@@ -2,6 +2,8 @@ package com.example.findmatch.Activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.findmatch.Adapter.TeamAdapter
@@ -10,9 +12,9 @@ import com.example.findmatch.R
 import com.example.findmatch.Service.TeamService
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_team_list.*
-import kotlinx.android.synthetic.main.activity_team_manage.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +29,17 @@ class TeamListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team_list)
 
+
         getMyTeam(this)
+    }
+
+    inner class ListListener : AdapterView.OnItemClickListener{
+        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+            startActivity<TeamManageActivity>(
+                "teamName" to teamList.get(position).teamName
+            )
+        }
     }
 
     // 내가 속한 팀 불러오기
@@ -63,6 +75,8 @@ class TeamListActivity : AppCompatActivity() {
                             teamList
                         )
                     teamListView.adapter = teamAdapter
+                    var listener = ListListener()
+                    teamListView.setOnItemClickListener(listener)
                 }
             }
         })

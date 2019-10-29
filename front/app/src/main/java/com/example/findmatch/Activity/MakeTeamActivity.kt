@@ -10,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import com.example.findmatch.DTO.TeamDto
 import com.example.findmatch.R
 import com.example.findmatch.Service.TeamService
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_make_team.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MakeTeamActivity : AppCompatActivity() {
     var checkDup = false
-
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make_team)
@@ -139,13 +140,14 @@ class MakeTeamActivity : AppCompatActivity() {
         if(checkDup){
             val teamName = teamNameTxt.text.toString()
             val teamInfo = teamInfoTxt.text.toString()
+            val teamLocate = teamLocateTxt.text.toString()
             val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(createOkHttpClient())
                 .build()
 
             var service = retrofit.create(TeamService::class.java)
-            var team = TeamDto(teamName, teamInfo)
+            var team = TeamDto(teamName, teamInfo, teamLocate)
             val call: Call<Int> = service.addTeam(team)
             call.enqueue(object : Callback<Int>{
                 override fun onFailure(call: Call<Int>, t: Throwable) {
@@ -166,8 +168,12 @@ class MakeTeamActivity : AppCompatActivity() {
             .build()
 
         var service = retrofit.create(TeamService::class.java)
+
+        auth = FirebaseAuth.getInstance()
+        val myEmail :String ?= auth.currentUser!!.email
+        teamMember.add(myEmail!!)
+
         val teamMemberArray = teamMember.toArray()
-        Log.d("TAG", teamMemberArray.toString())
         val call: Call<Int> = service.addTeamMember(teamMemberArray, teamName)
 
         call.enqueue(object : Callback<Int>{

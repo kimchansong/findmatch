@@ -26,7 +26,18 @@
         android:text="팀 소개 :"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teamName" />
+        app:layout_constraintTop_toBottomOf="@+id/teamNameTxt" />
+
+    <TextView
+        android:id="@+id/teamLocate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:text="팀 위치 :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teamInfoTxt" />
 
     <EditText
         android:id="@+id/teamNameTxt"
@@ -56,48 +67,61 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintBaseline_toBaselineOf="@+id/teamInfo"
-        app:layout_constraintStart_toEndOf="@+id/teamInfo" />
+        app:layout_constraintTop_toTopOf="@id/teamInfo"
+        app:layout_constraintLeft_toRightOf="@id/teamInfo"/>
+
+    <EditText
+        android:id="@+id/teamLocateTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toTopOf="@id/teamLocate"
+        app:layout_constraintBaseline_toBaselineOf="@+id/teamLocate"
+        app:layout_constraintStart_toEndOf="@+id/teamLocate" />
 
     <ImageButton
         android:id="@+id/addMemberBtn"
         android:layout_width="33dp"
         android:layout_height="29dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+        android:layout_marginTop="4dp"
+        app:layout_constraintLeft_toRightOf="@id/memberEmailText"
+        app:layout_constraintTop_toTopOf="@id/memberEmailText"
+        app:srcCompat="@drawable/ic_add_black_24dp"
+        tools:layout_editor_absoluteX="329dp" />
 
     <TextView
         android:id="@+id/teamMember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="50dp"
         android:text="팀 맴버 :"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teamInfo" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/teamLocateTxt" />
 
     <Button
         android:id="@+id/teamMakeCommit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginBottom="100dp"
         android:text="팀 생성"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/memberEmailText" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/rollBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="216dp"
         android:text="돌아가기"
+        app:layout_constraintTop_toTopOf="@id/teamMakeCommit"
         app:layout_constraintStart_toEndOf="@+id/teamMakeCommit"
-        app:layout_constraintTop_toBottomOf="@+id/memberEmailText" />
+        tools:layout_editor_absoluteY="540dp" />
 
     <TextView
         android:id="@+id/dupCheckText"
@@ -119,8 +143,9 @@
         android:ems="10"
         android:hint="ID 입력해주세요"
         android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@id/teamMember"
         app:layout_constraintStart_toEndOf="@+id/teamMember"
-        app:layout_constraintTop_toBottomOf="@+id/teamInfoTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/teamLocateTxt" />
 
     <TextView
         android:id="@+id/emailCheckText"
