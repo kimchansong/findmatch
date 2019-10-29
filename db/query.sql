@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `test`.`board` (
   `b_title` VARCHAR(45) NOT NULL,
   `b_content` VARCHAR(45) NULL,
   `b_type` INT NOT NULL,
-  `b_date` DATE NOT NULL,
+  `b_date` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`b_num`),
   INDEX `fk_board_User1_idx` (`User_u_id` ASC) VISIBLE,
   CONSTRAINT `fk_board_User1`
