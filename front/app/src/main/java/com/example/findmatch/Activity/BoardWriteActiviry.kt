@@ -9,6 +9,7 @@ import android.widget.Spinner
 import com.example.findmatch.DTO.BoardDto
 import com.example.findmatch.R
 import com.example.findmatch.Service.BoardService
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_board_write_activiry.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -23,6 +24,8 @@ import java.util.*
 
 
 class BoardWriteActiviry : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +44,14 @@ class BoardWriteActiviry : AppCompatActivity() {
 
         }
 
-        deleteButton.setOnClickListener{
+        writeButton.setOnClickListener{
+
+            auth = FirebaseAuth.getInstance()
             val title = writeTitle.text.toString()
             val content = writeContent.text.toString()
-
-            var item : BoardDto = BoardDto(0,"Admin",title,content,3,nowTime())
+            val email = auth.currentUser!!.email.toString()
+            println(email)
+            var item : BoardDto = BoardDto(0,email,title,content,3,nowTime())
             /*
             println("시간 : " + nowTime())
             println("제목 : " + title)

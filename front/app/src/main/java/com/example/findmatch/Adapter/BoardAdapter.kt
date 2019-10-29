@@ -34,7 +34,7 @@ class BoardAdapter (val context : Context, val boardList: List<BoardDto>) : Base
     }
 
     override fun getItem(position: Int): Any {
-        
+
         return boardList[position]
     }
 

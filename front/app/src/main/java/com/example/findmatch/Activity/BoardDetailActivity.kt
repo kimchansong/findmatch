@@ -11,8 +11,6 @@ import com.example.findmatch.DTO.BoardDto
 import com.example.findmatch.R
 import com.example.findmatch.Service.BoardService
 import kotlinx.android.synthetic.main.activity_board_detail.*
-import kotlinx.android.synthetic.main.activity_board_write_activiry.*
-import kotlinx.android.synthetic.main.activity_board_write_activiry.deleteButton
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeContent
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeTitle
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeType
