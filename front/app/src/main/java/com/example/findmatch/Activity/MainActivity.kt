@@ -9,6 +9,9 @@ import android.widget.Toast
 import com.example.findmatch.R
 import com.example.findmatch.DTO.TeamDto
 import com.example.findmatch.Service.TeamService
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
@@ -23,7 +26,7 @@ import kotlinx.android.synthetic.main.activity_main.pager
 import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
-   // private val KEY_POSITION = "keyPosition"
+   private lateinit var googleSignInClient: GoogleSignInClient
 
    // private var navPosition: BottomNavigationPosition = BottomNavigationPosition.HOME
    private lateinit var auth: FirebaseAuth
@@ -32,7 +35,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
       //  restoreSaveInstanceState(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
         //이미지 슬라이드
         pager.adapter = MainPagerAdapter()
         pager.offscreenPageLimit = 3
@@ -84,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             auth = FirebaseAuth.getInstance()
             auth.signOut()
+            googleSignInClient.signOut()
             startActivity<LoginActivity>()
         }
 
