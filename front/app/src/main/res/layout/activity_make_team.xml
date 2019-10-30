@@ -28,6 +28,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/teamName" />
 
+    <TextView
+        android:id="@+id/teamLocate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:text="팀 위치 :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teamInfoTxt" />
+
+
     <EditText
         android:id="@+id/teamNameTxt"
         android:layout_width="wrap_content"
@@ -57,6 +69,19 @@
         android:inputType="textMultiLine"
         app:layout_constraintBaseline_toBaselineOf="@+id/teamInfo"
         app:layout_constraintStart_toEndOf="@+id/teamInfo" />
+
+    <EditText
+        android:id="@+id/teamLocateTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toTopOf="@id/teamLocate"
+        app:layout_constraintBaseline_toBaselineOf="@+id/teamLocate"
+        app:layout_constraintStart_toEndOf="@+id/teamLocate" />
+
 
     <ImageButton
         android:id="@+id/addMemberBtn"

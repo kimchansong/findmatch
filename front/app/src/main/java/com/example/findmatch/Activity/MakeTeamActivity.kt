@@ -11,9 +11,11 @@ import com.example.findmatch.DTO.TeamDto
 import com.example.findmatch.DTO.UserDto
 import com.example.findmatch.R
 import com.example.findmatch.Service.TeamService
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_make_team.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,12 +24,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MakeTeamActivity : AppCompatActivity() {
     var checkDup = false
-
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make_team)
+        auth = FirebaseAuth.getInstance()
 
-        var teamMember = HashSet<String>()
+        var teamMember = mutableListOf<String>()
+        val myEmail : String ?= auth.currentUser!!.email
+
+        teamMember.add(myEmail!!)
 
         teamNameTxt.addTextChangedListener(){
             checkDup = false
@@ -81,7 +87,7 @@ class MakeTeamActivity : AppCompatActivity() {
         })
     }
 
-    private fun checkDuplicationTeamMember(teamMember : HashSet<String>){
+    private fun checkDuplicationTeamMember(teamMember:MutableList<String>){
         val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .client(createOkHttpClient())
@@ -118,8 +124,8 @@ class MakeTeamActivity : AppCompatActivity() {
         })
     }
 
-    private fun updateText(teamMember: HashSet<String>){
-        var members = teamMember.toArray()
+    private fun updateText(teamMember: MutableList<String>){
+        var members = teamMember
         var text = ""
         for(member in members){
             text += member
@@ -140,26 +146,30 @@ class MakeTeamActivity : AppCompatActivity() {
         if(checkDup){
             val teamName = teamNameTxt.text.toString()
             val teamInfo = teamInfoTxt.text.toString()
+            val teamLocate = teamLocateTxt.text.toString()
+
             val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(createOkHttpClient())
                 .build()
 
             var service = retrofit.create(TeamService::class.java)
-            var team = TeamDto(teamName, teamInfo)
+            var team = TeamDto(teamName, teamInfo, teamLocate)
             val call: Call<Int> = service.addTeam(team)
             call.enqueue(object : Callback<Int>{
                 override fun onFailure(call: Call<Int>, t: Throwable) {
                     Toast.makeText(applicationContext,"실패",Toast.LENGTH_SHORT).show()
+                    startActivity<MainActivity>()
                 }
                 override fun onResponse(call: Call<Int>, response: Response<Int>) {
                     Toast.makeText(applicationContext, "성공",Toast.LENGTH_SHORT).show()
+                    startActivity<MainActivity>()
                 }
             })
         }
     }
 
-    private fun addTeamMember(teamMember: HashSet<String>){
+    private fun addTeamMember(teamMember: MutableList<String>){
         val teamName = teamNameTxt.text.toString()
         val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
@@ -167,9 +177,9 @@ class MakeTeamActivity : AppCompatActivity() {
             .build()
 
         var service = retrofit.create(TeamService::class.java)
-        val teamMemberArray = teamMember.toArray()
-        Log.d("TAG", teamMemberArray.toString())
-        val call: Call<Int> = service.addTeamMember(teamMemberArray, teamName)
+
+        Log.d("TAG", teamMember.toString())
+        val call: Call<Int> = service.addTeamMember(teamMember, teamName)
 
         call.enqueue(object : Callback<Int>{
             override fun onFailure(call: Call<Int>, t: Throwable) {

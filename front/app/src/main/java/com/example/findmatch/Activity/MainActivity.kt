@@ -74,8 +74,6 @@ class MainActivity : AppCompatActivity() {
 
         initFragment(savedInstanceState)
 */
-        // HTTP 통신
-        setRetrofit()
 
 
         // 데이터 값 읽어오기
@@ -139,29 +137,6 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "$data", Toast.LENGTH_SHORT).show()
     }
 
-    // HTTP 통신
-    private fun setRetrofit(){
-
-    val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(createOkHttpClient())
-        .build()
-
-    var service = retrofit.create(TeamService::class.java)
-
-    val call:Call<TeamDto> = service.requestTeam()
-
-    call.enqueue(object : Callback<TeamDto>{
-        override fun onFailure(call: Call<TeamDto>, t: Throwable) {
-            Toast.makeText(applicationContext,"실패",Toast.LENGTH_SHORT).show()
-        }
-
-        override fun onResponse(call: Call<TeamDto>, response: Response<TeamDto>) {
-            if(response.body()!=null){
-                Toast.makeText(applicationContext,response.body()!!.teamName + " " + response.body()!!.teamInfo,Toast.LENGTH_SHORT).show()
-            }
-        }
-    })
 }
     private fun createOkHttpClient(): OkHttpClient {
         val builder = OkHttpClient.Builder()
@@ -205,5 +180,3 @@ class MainActivity : AppCompatActivity() {
         return supportFragmentManager.findFragmentByTag(position.getTag()) ?: position.createFragment()
     }
 */
-
-}

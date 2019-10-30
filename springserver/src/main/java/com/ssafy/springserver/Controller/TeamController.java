@@ -96,10 +96,16 @@ public class TeamController {
     }
 
     // 팀 삭제
-    @PostMapping("/teamDelete/{teamName}")
+    @PostMapping("/team/delete/{teamName}")
     public int deleteTeamRequest(@PathVariable("teamName") String teamName){
         if(teamName != null){
-            return teamRepository.deleteTeam(teamName);
+            List<TeamMember> teamMemberList = teamMemberRepository.findByTeamName(teamName);
+            for(TeamMember item : teamMemberList){
+                teamMemberRepository.delete(item);
+            }
+
+            teamRepository.deleteById(teamName);
+            return 1;
         }
         else return 0;
     }
@@ -118,12 +124,22 @@ public class TeamController {
     // 팀원 추가
     @PostMapping("/teamMember/add/{teamName}")
     public int addTeamMember(@RequestBody List<String> teamMember, @PathVariable("teamName") String teamName){
+        int count = 0;
         for(String member : teamMember){
-            teamMemberRepository.save(TeamMember.builder()
-                    .teamName(teamName)
-                    .userId(member)
-                    .auth("팀원")
-                    .build());
+            if(count == 0){
+                teamMemberRepository.save(TeamMember.builder()
+                        .teamName(teamName)
+                        .userId(member)
+                        .auth("팀장")
+                        .build());
+            }else {
+                teamMemberRepository.save(TeamMember.builder()
+                        .teamName(teamName)
+                        .userId(member)
+                        .auth("팀원")
+                        .build());
+            }
+            count++;
         }
 
         return 0;
