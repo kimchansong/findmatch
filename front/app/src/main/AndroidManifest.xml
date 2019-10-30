@@ -12,11 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@drawable/login_button" />
+
         <activity
             android:name=".Activity.TeamListActivity"
             android:label="@string/title_activity_team_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Activity.BoardDetailActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.BoardDetailActivity" />
         <activity android:name=".Activity.BoardWriteActiviry" />
         <activity
             android:name=".Adapter.BoardAdapter"
@@ -29,11 +33,12 @@
         <activity
             android:name=".Activity.ResultActivity"
             android:parentActivityName=".Activity.MainActivity" />
-        <activity android:name=".Activity.MainActivity"/>
+        <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.TeamManageActivity" />
         <activity android:name=".Activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
