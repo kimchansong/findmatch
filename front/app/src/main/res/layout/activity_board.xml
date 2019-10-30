@@ -24,10 +24,10 @@
 
     <ListView
         android:id="@+id/listBoard"
-        android:layout_width="351dp"
-        android:layout_height="236dp"
+        android:layout_width="357dp"
+        android:layout_height="275dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="32dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
         android:overScrollMode="never"
@@ -39,6 +39,7 @@
         android:id="@+id/insertButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="40dp"
         android:text="글쓰기"
         app:layout_constraintEnd_toEndOf="parent"

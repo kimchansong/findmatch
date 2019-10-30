@@ -16,18 +16,24 @@ class BoardAdapter (val context : Context, val boardList: List<BoardDto>) : Base
         val view: View = LayoutInflater.from(context).inflate(R.layout.activity_board_adapter, null)
 
         val number = view.findViewById<TextView>(R.id.number)
-        val userId = view.findViewById<TextView>(R.id.userId)
+        //val userId = view.findViewById<TextView>(R.id.userId)
         val title = view.findViewById<TextView>(R.id.title)
-        val content = view.findViewById<TextView>(R.id.content)
+       // val content = view.findViewById<TextView>(R.id.content)
         val type = view.findViewById<TextView>(R.id.type)
         val date = view.findViewById<TextView>(R.id.date)
 
         val boardItem = boardList[position]
         number.text = boardItem.b_num.toString()
-        userId.text = boardItem.user_u_id
+        //userId.text = boardItem.user_u_id
         title.text = boardItem.b_title
-        content.text = boardItem.b_content
-        type.text = boardItem.b_type.toString()
+        //content.text = boardItem.b_content
+        if( boardItem.b_type == 1){
+            type.text = "매칭게시판"
+        }else if(boardItem.b_type == 2 ){
+            type.text = "용병게시판"
+        } else {
+            type.text = "자유게시판"
+        }
         date.text = boardItem.b_date
 
         return view

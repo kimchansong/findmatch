@@ -2,12 +2,12 @@ package com.example.findmatch.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.findmatch.DTO.BoardDto
+import com.example.findmatch.DTO.TeamDto
 import com.example.findmatch.R
 import com.example.findmatch.Service.BoardService
 import com.google.firebase.auth.FirebaseAuth
@@ -15,7 +15,9 @@ import kotlinx.android.synthetic.main.activity_board_detail.*
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeContent
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeTitle
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeType
+import kotlinx.android.synthetic.main.activity_team_manage.*
 import kotlinx.android.synthetic.main.activity_team_member_item.*
+import kotlinx.android.synthetic.main.activity_team_member_item.teamName
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.jetbrains.anko.startActivity
@@ -34,10 +36,11 @@ class BoardDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_detail)
 
-
         val num = intent.getIntExtra("num",0)
         writeTitle.setText(intent.getStringExtra("title"))
         writeContent.setText(intent.getStringExtra("content"))
+        val writter = intent.getStringExtra("writter")
+
 
         val spn = findViewById(R.id.writeType) as Spinner
         val sAdapter = ArrayAdapter.createFromResource(this, com.example.findmatch.R.array.boardType, android.R.layout.simple_spinner_dropdown_item)
@@ -53,6 +56,16 @@ class BoardDetailActivity : AppCompatActivity() {
                 type = result[0].toInt()
             }
 
+        }
+
+        //글 수정 권한 확인
+        auth = FirebaseAuth.getInstance()
+        val nowUser = auth.currentUser!!.email.toString()
+
+        // 권한이 없다면 숨기
+        if(nowUser != writter){
+            updateButton.visibility = View.GONE
+            deleteButton.visibility = View.GONE
         }
 
         deleteButton.setOnClickListener{
@@ -101,7 +114,6 @@ class BoardDetailActivity : AppCompatActivity() {
 
         var service = retrofit.create(BoardService::class.java)
         val call: Call<Int> =  service.updateBoard(item)
-        println("업데이트 : " + item.toString())
         call.enqueue(object : Callback<Int> {
             override fun onFailure(call: Call<Int>, t: Throwable) {
                 Toast.makeText(applicationContext,"수정 실패",Toast.LENGTH_SHORT).show()
@@ -116,7 +128,6 @@ class BoardDetailActivity : AppCompatActivity() {
 
         })
     }
-
 
     private fun nowTime(): String {
         val dt = Date()

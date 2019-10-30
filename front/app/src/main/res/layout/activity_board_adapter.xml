@@ -10,60 +10,41 @@
         android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="글번호"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/userId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:id="@+id/title"
+        android:layout_width="121dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="유저아이디"
+        android:text="글제목"
         app:layout_constraintStart_toEndOf="@+id/number"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:id="@+id/type"
+        android:layout_width="96dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="글제목"
-        app:layout_constraintStart_toEndOf="@+id/userId"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="내용"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
+        android:text="타입"
         app:layout_constraintStart_toEndOf="@+id/title"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/type"
-        android:layout_width="28dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
-        android:text="타입"
-        app:layout_constraintStart_toEndOf="@+id/content"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="111dp"
+        android:layout_height="22dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="날짜"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/type"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
