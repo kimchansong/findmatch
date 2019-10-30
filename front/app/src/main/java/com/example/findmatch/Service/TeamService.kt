@@ -27,8 +27,12 @@ interface TeamService{
     fun requestTeamJoin(@Path("teamName") teamName:String):Call<Array<TeamJoinDto>>
 
     // 팀 삭제
-    @POST("team/delete/{teamName}")
-    fun requestTeamDelete(@Path("teamName") teamName:String):Call<Boolean>
+    @POST("team/delete")
+    fun requestTeamDelete(@Body teamName:TeamDto):Call<Int>
+
+    // 팀원 삭제
+    @POST("teamMember/delete/{teamName}")
+    fun requestTeamMemberDelete(@Path("teamName") teamName: String):Call<Int>
 
     // 팀 중복 체크
     @GET("duplicationCheck/{teamName}")

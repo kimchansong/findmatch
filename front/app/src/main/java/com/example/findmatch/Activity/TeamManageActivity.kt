@@ -35,7 +35,8 @@ class TeamManageActivity : AppCompatActivity() {
         getTeamJoinRequest(this, myTeamName)
 
         teamDeleteBtn.setOnClickListener{
-            deleteTeam(myTeamName)
+            deleteTeam()
+            deleteTeamMember(myTeamName)
         }
     }
 
@@ -140,26 +141,50 @@ class TeamManageActivity : AppCompatActivity() {
     }
 
     // 팀 삭제
-    private fun deleteTeam(myTeamName: String){
-        Log.d("DELETE", myTeamName)
-
+    private fun deleteTeam(){
         val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .client(createOkHttpClient())
             .build()
 
         var service = retrofit.create(TeamService::class.java)
+        val call: Call<Int> = service.requestTeamDelete(team!!)
 
-        val call: Call<Boolean> = service.requestTeamDelete(myTeamName)
-
-        call.enqueue(object: Callback<Boolean>{
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
+        call.enqueue(object: Callback<Int>{
+            override fun onFailure(call: Call<Int>, t: Throwable) {
                 Toast.makeText(applicationContext, "실패", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                if(response.body()!!){
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                if(response.body() == 1){
                     Toast.makeText(applicationContext, "팀 삭제 성공", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(applicationContext, "팀 삭제 실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+    // 팀원 삭제
+    private fun deleteTeamMember(myTeamName: String){
+        val retrofit = Retrofit.Builder().baseUrl("http://10.0.2.2:8080")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(createOkHttpClient())
+            .build()
+
+        var service = retrofit.create(TeamService::class.java)
+        val call: Call<Int> = service.requestTeamMemberDelete(myTeamName)
+
+        call.enqueue(object: Callback<Int>{
+            override fun onFailure(call: Call<Int>, t: Throwable) {
+                Toast.makeText(applicationContext, "실패", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                if(response.body() == 1){
+                    // 성공
+                }else{
+                    // 실패
                 }
             }
         })

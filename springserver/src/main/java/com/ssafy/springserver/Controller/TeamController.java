@@ -44,8 +44,8 @@ public class TeamController {
             List<TeamMemberDto> teamMemberDtos = new ArrayList<>();
             for (TeamMember member: teamMember) {
                 teamMemberDtos.add(new TeamMemberDto(
-                        member.getTeamMemberId().getTeamName(),
-                        member.getTeamMemberId().getUserId(),
+                        member.getTeamName(),
+                        member.getUserId(),
                         member.getAuth()));
             }
 
@@ -59,12 +59,12 @@ public class TeamController {
     public List<TeamMemberDto> getTeamMember(@PathVariable("teamName") String teamName){
         if(teamName != null){
             List<TeamMember> teamMember = teamMemberRepository.findByTeamName(teamName);
-
             List<TeamMemberDto> teamMemberDtos = new ArrayList<>();
+
             for (TeamMember member: teamMember) {
                 teamMemberDtos.add(new TeamMemberDto(
-                        member.getTeamMemberId().getTeamName(),
-                        member.getTeamMemberId().getUserId(),
+                        member.getTeamName(),
+                        member.getUserId(),
                         member.getAuth()));
             }
 
@@ -95,14 +95,23 @@ public class TeamController {
     }
 
     // 팀 삭제
-    @PostMapping("/team/delete/{teamName}")
-    public int deleteTeamRequest(@PathVariable("teamName") String teamName){
-        System.out.println(teamName);
-        if(teamName != null){
-            teamRepository.deleteById(teamName);
+    @PostMapping("/team/delete")
+    public int deleteTeamRequest(@RequestBody TeamDto team){
+        if(team != null){
+            teamRepository.delete(Team.builder()
+                    .teamName(team.getTeamName())
+                    .teamInfo(team.getTeamInfo())
+                    .teamLocate(team.getTeamLocate()).build());
             return 1;
         }
         else return 0;
+    }
+
+    // 팀원 삭제
+    @PostMapping("/teamMember/delete/{teamName}")
+    public int deleteTeamMemberRequest(@PathVariable("teamName") String teamName){
+        teamMemberRepository.deleteByTeamName(teamName);
+        return 1;
     }
 
     // 팀 생성

@@ -14,4 +14,7 @@ public interface TeamMemberRepository extends JpaRepository<TeamMember, TeamMemb
 
     @Query("SELECT teamhasuser FROM TeamMember  teamhasuser WHERE  User_u_id = :userId")
     List<TeamMember> findByUserId(@Param("userId") String userId);
+
+    @Query("DELETE FROM TeamMember teamhasuser WHERE Team_t_name = :teamName")
+    int deleteByTeamName(@Param("teamName") String teamName);
 }

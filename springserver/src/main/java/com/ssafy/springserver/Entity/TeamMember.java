@@ -10,21 +10,23 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Table(name = "Team_has_User")
+@IdClass(TeamMemberId.class)
 public class TeamMember {
+    @Id
+    @Column(name = "Team_t_name")
+    private String teamName;
 
-    @EmbeddedId
-    private TeamMemberId teamMemberId;
-    private @Column(name = "t_auth") String auth;
+    @Id
+    @Column(name = "User_u_id")
+    private String userId;
+
+    @Column(name = "t_auth")
+    private  String auth;
 
     @Builder
     TeamMember(String teamName, String userId, String auth){
-        teamMemberId = new TeamMemberId();
-        teamMemberId.setTeamName(teamName);
-        teamMemberId.setUserId(userId);
+        this.teamName = teamName;
+        this.userId = userId;
         this.auth = auth;
     }
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "t_name")
-    private Team team;
 }
