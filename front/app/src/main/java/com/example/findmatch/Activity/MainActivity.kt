@@ -135,8 +135,6 @@ class MainActivity : AppCompatActivity() {
     private fun loadData(){
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
         val data = pref.getString("DATA", "없음") // 저장된 값이 없을때 기본값 '없음'
-
-        Toast.makeText(this, "$data", Toast.LENGTH_SHORT).show()
     }
 
     // HTTP 통신
@@ -158,7 +156,6 @@ class MainActivity : AppCompatActivity() {
 
         override fun onResponse(call: Call<TeamDto>, response: Response<TeamDto>) {
             if(response.body()!=null){
-                Toast.makeText(applicationContext,response.body()!!.teamName + " " + response.body()!!.teamInfo,Toast.LENGTH_SHORT).show()
             }
         }
     })
