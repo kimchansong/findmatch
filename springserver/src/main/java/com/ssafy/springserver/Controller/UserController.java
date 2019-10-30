@@ -17,7 +17,6 @@ public class UserController {
     public User checkUser(@PathVariable("userId") String userId){
         if(userId != null){
             User user = userRepository.checkId(userId);
-            System.out.println(user.toString());
             if(user != null) return user;
             else return null;
         }else
