@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS `test`.`Team_has_User` (
   `User_u_id` VARCHAR(45) NOT NULL,
   `t_auth` VARCHAR(45) NULL,
    FOREIGN KEY (`User_u_id`)
-    REFERENCES `test`.`User` (`u_id`),
+    REFERENCES `test`.`User` (`u_id`) on delete cascade on update cascade,
     FOREIGN KEY (`Team_t_name`)
-    REFERENCES `test`.`Team` (`t_name`));
+    REFERENCES `test`.`Team` (`t_name`) on delete cascade on update cascade);
 
 
 -- -----------------------------------------------------
@@ -64,9 +64,9 @@ CREATE TABLE IF NOT EXISTS `test`.`matching` (
   `m_location` VARCHAR(45) NULL,
   PRIMARY KEY (`m_num`),
     FOREIGN KEY (`m_hometeam`)
-    REFERENCES `test`.`Team` (`t_name`),
+    REFERENCES `test`.`Team` (`t_name`) on delete cascade on update cascade,
     FOREIGN KEY (`Stadium_stadium_num`)
-    REFERENCES `test`.`Stadium` (`s_num`));
+    REFERENCES `test`.`Stadium` (`s_num`)on delete cascade on update cascade);
 
 -- -----------------------------------------------------
 -- Table `test`.`matching_away`
@@ -75,9 +75,9 @@ CREATE TABLE IF NOT EXISTS `test`.`matching_away` (
   `matching_m_num1` INT NOT NULL,
   `Team_t_name` VARCHAR(45) NOT NULL,
     FOREIGN KEY (`Team_t_name`)
-    REFERENCES `test`.`Team` (`t_name`),
+    REFERENCES `test`.`Team` (`t_name`)on delete cascade on update cascade,
     FOREIGN KEY (`matching_m_num1`)
-    REFERENCES `test`.`matching` (`m_num`));
+    REFERENCES `test`.`matching` (`m_num`)on delete cascade on update cascade);
 
 
 -- -----------------------------------------------------
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `test`.`board` (
   `b_date` DATETIME NOT NULL,
   PRIMARY KEY (`b_num`),
     FOREIGN KEY (`User_u_id`)
-    REFERENCES `test`.`User` (`u_id`));
+    REFERENCES `test`.`User` (`u_id`)on delete cascade on update cascade);
 
 
 -- -----------------------------------------------------
@@ -106,9 +106,9 @@ CREATE TABLE IF NOT EXISTS `test`.`comment` (
   `c_date` VARCHAR(45) NULL,
   PRIMARY KEY (`c_num`),
     FOREIGN KEY (`board_b_num`)
-    REFERENCES `test`.`board` (`b_num`),
+    REFERENCES `test`.`board` (`b_num`)on delete cascade on update cascade,
     FOREIGN KEY (`user_u_id`)
-    REFERENCES `test`.`User` (`u_id`));
+    REFERENCES `test`.`User` (`u_id`)on delete cascade on update cascade);
 
 
 
@@ -134,3 +134,5 @@ insert into matching(m_num,m_status,m_uid,m_hometeam) values(0,"매칭중","홍�
 insert into matching_away values(1,"sk");
 select User_u_id from Team_has_User WHERE Team_t_name="기아타이거즈";
 select * from board order by b_num desc;
+
+
