@@ -48,7 +48,8 @@ class BoardActivity : AppCompatActivity() {
                 "title" to boardList.get(position).b_title,
                "content" to  boardList.get(position).b_content,
                 "date" to boardList.get(position).b_date,
-                "num" to boardList.get(position).b_num
+                "num" to boardList.get(position).b_num,
+                "writter" to boardList.get(position).user_u_id
             )
         }
     }
