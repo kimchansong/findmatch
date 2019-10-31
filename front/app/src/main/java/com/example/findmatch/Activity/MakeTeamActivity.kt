@@ -14,13 +14,20 @@ import com.example.findmatch.Service.TeamService
 import kotlinx.android.synthetic.main.activity_make_team.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.android.synthetic.main.activity_footer.view.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_make_team.top
 
 class MakeTeamActivity : AppCompatActivity() {
+    //푸터
+
+
     var checkDup = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +41,13 @@ class MakeTeamActivity : AppCompatActivity() {
             dupCheckText.setText("팀 이름이 변경되었습니다")
             dupCheckText.setTextColor(Color.BLACK)
         }
-
+        //푸터
+        top.home.setOnClickListener(){
+            startActivity<MainActivity>()
+        }
+        top.person.setOnClickListener(){
+            startActivity<MypageActivity>()
+        }
         // 중복체크
         dupBtn.setOnClickListener {
             checkDuplication()

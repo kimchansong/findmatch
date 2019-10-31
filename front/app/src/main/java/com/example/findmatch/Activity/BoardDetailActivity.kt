@@ -12,9 +12,12 @@ import com.example.findmatch.R
 import com.example.findmatch.Service.BoardService
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_board_detail.*
+import kotlinx.android.synthetic.main.activity_board_write_activiry.*
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeContent
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeTitle
 import kotlinx.android.synthetic.main.activity_board_write_activiry.writeType
+import kotlinx.android.synthetic.main.activity_footer.view.*
+import kotlinx.android.synthetic.main.activity_make_team.*
 import kotlinx.android.synthetic.main.activity_team_manage.*
 import kotlinx.android.synthetic.main.activity_team_member_item.*
 import kotlinx.android.synthetic.main.activity_team_member_item.teamName
@@ -80,6 +83,14 @@ class BoardDetailActivity : AppCompatActivity() {
             var item : BoardDto = BoardDto(num,email,title,content,type,nowTime())
             updateBoard(item)
         }
+        //푸터
+        top_board_detail.home.setOnClickListener(){
+            startActivity<MainActivity>()
+        }
+        top_board_detail.person.setOnClickListener(){
+            startActivity<MypageActivity>()
+        }
+
     }
 
     private fun deleteBoard(num : Int){

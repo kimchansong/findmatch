@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MypageActivity">
 
+    <include
+        android:id="@+id/top"
+        layout="@layout/activity_footer_after_mypage"
+        app:layout_constraintBottom_toBottomOf="parent" />
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
@@ -149,5 +153,20 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="parent" />
+
+<!--
+   <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="31dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/boardButton"
+        app:layout_constraintTop_toTopOf="@+id/boardButton"
+        app:srcCompat="@drawable/ic_board" />
+
+-->
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

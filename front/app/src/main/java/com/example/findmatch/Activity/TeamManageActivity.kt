@@ -10,9 +10,14 @@ import com.example.findmatch.DTO.TeamDto
 import com.example.findmatch.DTO.TeamJoinDto
 import com.example.findmatch.DTO.TeamMemberDto
 import com.example.findmatch.Service.TeamService
+import kotlinx.android.synthetic.main.activity_footer.view.*
+import kotlinx.android.synthetic.main.activity_make_team.*
 import kotlinx.android.synthetic.main.activity_team_manage.*
+import kotlinx.android.synthetic.main.activity_team_manage.teamInfo
+import kotlinx.android.synthetic.main.activity_team_manage.teamName
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +39,16 @@ class TeamManageActivity : AppCompatActivity() {
         teamDeleteBtn.setOnClickListener{
             deleteTeam()
         }
+        /*
+        //푸터
+        top.home.setOnClickListener(){
+            startActivity<MainActivity>()
+        }
+        top.person.setOnClickListener(){
+            startActivity<MypageActivity>()
+        }
+
+         */
     }
 
     // 팀 정보 불러오기

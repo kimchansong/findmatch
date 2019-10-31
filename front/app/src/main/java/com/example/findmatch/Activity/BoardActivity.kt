@@ -11,7 +11,10 @@ import com.example.findmatch.DTO.BoardDto
 import com.example.findmatch.Service.BoardService
 import com.example.findmatch.R
 import kotlinx.android.synthetic.main.activity_board.*
+
 import kotlinx.android.synthetic.main.activity_board_write_activiry.*
+import kotlinx.android.synthetic.main.activity_footer.view.*
+import kotlinx.android.synthetic.main.activity_make_team.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.jetbrains.anko.startActivity
@@ -36,6 +39,13 @@ class BoardActivity : AppCompatActivity() {
         }
 
         setRetrofit(this)
+        //푸터
+        top_board.home.setOnClickListener(){
+            startActivity<MainActivity>()
+        }
+        top_board.person.setOnClickListener(){
+            startActivity<MypageActivity>()
+        }
     }
 
 

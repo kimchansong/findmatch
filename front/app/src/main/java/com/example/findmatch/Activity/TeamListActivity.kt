@@ -9,10 +9,13 @@ import com.example.findmatch.DTO.TeamMemberDto
 import com.example.findmatch.R
 import com.example.findmatch.Service.TeamService
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_footer.view.*
+import kotlinx.android.synthetic.main.activity_make_team.*
 import kotlinx.android.synthetic.main.activity_team_list.*
 import kotlinx.android.synthetic.main.activity_team_manage.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +31,13 @@ class TeamListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_team_list)
 
         getMyTeam(this)
+        //푸터
+        top_team_list.home.setOnClickListener(){
+            startActivity<MainActivity>()
+        }
+        top_team_list.person.setOnClickListener(){
+            startActivity<MypageActivity>()
+        }
     }
 
     // 내가 속한 팀 불러오기

@@ -11,6 +11,8 @@ import com.example.findmatch.DTO.BoardDto
 import com.example.findmatch.Service.BoardService
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_board_write_activiry.*
+import kotlinx.android.synthetic.main.activity_footer.view.*
+import kotlinx.android.synthetic.main.activity_make_team.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.jetbrains.anko.startActivity
@@ -55,6 +57,13 @@ class BoardWriteActiviry : AppCompatActivity() {
             var item : BoardDto = BoardDto(0,email,title,content,type,nowTime())
 
             writeBoard(item)
+        }
+        //푸터
+        top_board_write.home.setOnClickListener(){
+            startActivity<MainActivity>()
+        }
+        top_board_write.person.setOnClickListener(){
+            startActivity<MypageActivity>()
         }
     }
 
