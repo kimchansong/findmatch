@@ -16,7 +16,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <include
+        android:id="@+id/top_board_detail"
+        layout="@layout/activity_footer"
+        />
     <EditText
         android:id="@+id/writeTitle"
         android:layout_width="wrap_content"

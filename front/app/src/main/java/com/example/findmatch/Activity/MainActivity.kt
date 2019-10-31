@@ -13,6 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_footer.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -28,12 +29,10 @@ import kotlin.concurrent.timer
 class MainActivity : AppCompatActivity() {
    private lateinit var googleSignInClient: GoogleSignInClient
 
-   // private var navPosition: BottomNavigationPosition = BottomNavigationPosition.HOME
    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      //  restoreSaveInstanceState(savedInstanceState)
         setContentView(R.layout.activity_main)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -59,21 +58,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        //바텀
+        //푸터
 
-/*
-        findViewById<BottomNavigationView>(R.id.bottom_navigation).apply {
-            // This is required in Support Library 27 or lower:
-            // bottomNavigation.disableShiftMode()
-            active(navPosition.position) // Extension function
-            setOnNavigationItemSelectedListener { item ->
-                navPosition = findNavigationPositionById(item.itemId)
-                switchFragment(navPosition)
-            }
+        top.person.setOnClickListener(){
+            startActivity<MypageActivity>()
         }
-
-        initFragment(savedInstanceState)
-*/
+        button121.setOnClickListener(){
+            startActivity<TeamManageActivity>()
+        }
         // HTTP 통신
         setRetrofit()
 
@@ -81,12 +73,7 @@ class MainActivity : AppCompatActivity() {
         // 데이터 값 읽어오기
         loadData()
 
-        //마이 페이지
- /*       mypagebutton.setOnClickListener {
 
-            startActivity<MypageActivity>()
-        }
-*/
         // 로그인 페이지
         loginButton.setOnClickListener {
             auth = FirebaseAuth.getInstance()
@@ -114,10 +101,6 @@ class MainActivity : AppCompatActivity() {
             // 데이터 보내기
             // intent.putExtra("hi", "hihi")
             startActivity<TeamListActivity>()
-        }
-
-        connection.setOnClickListener {
-            startActivity<MypageActivity>()
         }
 
 
@@ -167,40 +150,5 @@ class MainActivity : AppCompatActivity() {
         builder.addInterceptor(interceptor)
         return builder.build()
     }
-/*
-    //바텀
-    override fun onSaveInstanceState(outState: Bundle?) {
-        // Store the current navigation position.
-        outState?.putInt(KEY_POSITION, navPosition.id)
-        super.onSaveInstanceState(outState)
-    }
-//바텀
-    private fun restoreSaveInstanceState(savedInstanceState: Bundle?) {
-        // Restore the current navigation position.
-        savedInstanceState?.getInt(KEY_POSITION, BottomNavigationPosition.HOME.id)?.also {
-            navPosition = findNavigationPositionById(it)
-        }
-    }
-
-    private fun initFragment(savedInstanceState: Bundle?) {
-        savedInstanceState ?: switchFragment(BottomNavigationPosition.HOME)
-    }
-
-    /**
-     * Immediately execute transactions with FragmentManager#executePendingTransactions.
-     */
-    private fun switchFragment(navPosition: BottomNavigationPosition): Boolean {
-        return findFragment(navPosition).let {
-            if (it.isAdded) return false
-            supportFragmentManager.detach() // Extension function
-            supportFragmentManager.attach(it, navPosition.getTag()) // Extension function
-            supportFragmentManager.executePendingTransactions()
-        }
-    }
-
-    private fun findFragment(position: BottomNavigationPosition): Fragment {
-        return supportFragmentManager.findFragmentByTag(position.getTag()) ?: position.createFragment()
-    }
-*/
 
 }

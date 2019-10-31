@@ -42,7 +42,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/writeTitle" />
-
+    <include
+        android:id="@+id/top_board_write"
+        layout="@layout/activity_footer"
+        />
     <Spinner
         android:id="@+id/writeType"
         android:layout_width="135dp"

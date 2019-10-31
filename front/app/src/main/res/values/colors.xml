@@ -8,10 +8,10 @@
     <color name="red">#F44336</color>
     <color name="green">#4CAF50</color>
     <color name="black">#212121</color>
-
+    <color name="rectangle">#cccccc</color>
     <color name="background">#e4e4e4</color>
     <color name="white">#ffffff</color>
-
+    <color name="rectanglebox">#f0f0f0</color>
     <color name="gray">#5b5b5b</color>
     <color name="light_gray">#e4e4e4</color>
     <color name="transparent">#00000000</color>
