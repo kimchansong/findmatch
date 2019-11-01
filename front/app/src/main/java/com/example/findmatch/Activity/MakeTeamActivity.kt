@@ -22,7 +22,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.android.synthetic.main.activity_footer.view.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_make_team.top
+import kotlinx.android.synthetic.main.activity_make_team.top_make_team
 
 class MakeTeamActivity : AppCompatActivity() {
     //푸터
@@ -42,11 +42,14 @@ class MakeTeamActivity : AppCompatActivity() {
             dupCheckText.setTextColor(Color.BLACK)
         }
         //푸터
-        top.home.setOnClickListener(){
+        top_make_team.home.setOnClickListener(){
             startActivity<MainActivity>()
         }
-        top.person.setOnClickListener(){
+        top_make_team.person.setOnClickListener(){
             startActivity<MypageActivity>()
+        }
+        top_make_team.notification.setOnClickListener(){
+            startActivity<NotificationActivity>()
         }
         // 중복체크
         dupBtn.setOnClickListener {

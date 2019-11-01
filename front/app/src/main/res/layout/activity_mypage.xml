@@ -7,7 +7,7 @@
     tools:context=".Activity.MypageActivity">
 
     <include
-        android:id="@+id/top"
+        android:id="@+id/top_mypage"
         layout="@layout/activity_footer_after_mypage"
         app:layout_constraintBottom_toBottomOf="parent" />
     <TextView
@@ -25,7 +25,7 @@
         android:id="@+id/idTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
         android:text="아이디"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -113,9 +113,9 @@
         android:id="@+id/editButton"
         android:layout_width="120dp"
         android:layout_height="60dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="#00912A2A"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/selector"
         android:text="수정"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,7 +126,8 @@
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/selector"
         android:text="취소"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -136,7 +137,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="38dp"
         android:layout_marginEnd="32dp"
         android:text="포인트"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"

@@ -6,15 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MakeTeamActivity">
     <include
-        android:id="@+id/top"
+        android:id="@+id/top_make_team"
         layout="@layout/activity_footer"
         />
+
     <TextView
         android:id="@+id/teamName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:text="팀 이름 :"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,8 +34,8 @@
 
     <EditText
         android:id="@+id/teamNameTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="187dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -45,15 +46,16 @@
         android:id="@+id/dupBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/selector"
         android:text="중복확인"
         app:layout_constraintBaseline_toBaselineOf="@+id/teamNameTxt"
-        app:layout_constraintStart_toEndOf="@+id/teamNameTxt" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/teamInfoTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="232dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:gravity="start|top"
@@ -86,8 +88,9 @@
         android:id="@+id/teamMakeCommit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="170dp"
+        android:background="@drawable/selector"
         android:text="팀 생성"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/memberEmailText" />
@@ -96,8 +99,9 @@
         android:id="@+id/rollBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="170dp"
+        android:background="@drawable/selector"
         android:text="돌아가기"
         app:layout_constraintStart_toEndOf="@+id/teamMakeCommit"
         app:layout_constraintTop_toBottomOf="@+id/memberEmailText" />

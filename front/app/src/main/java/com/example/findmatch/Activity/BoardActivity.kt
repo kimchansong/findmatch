@@ -46,6 +46,9 @@ class BoardActivity : AppCompatActivity() {
         top_board.person.setOnClickListener(){
             startActivity<MypageActivity>()
         }
+        top_board.notification.setOnClickListener(){
+            startActivity<NotificationActivity>()
+        }
     }
 
 

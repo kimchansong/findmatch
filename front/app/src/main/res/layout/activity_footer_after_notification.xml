@@ -24,7 +24,7 @@
         android:layout_height="30dp"
         android:layout_marginEnd="108dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/footer_notification"
+        android:background="@drawable/notifications_button_after"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/person" />
 
@@ -44,7 +44,7 @@
         android:layout_height="30dp"
         android:layout_marginEnd="330dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/house_black_silhouette_without_door_after"
+        android:background="@drawable/footer_home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
