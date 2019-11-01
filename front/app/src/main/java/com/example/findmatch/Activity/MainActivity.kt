@@ -63,9 +63,16 @@ class MainActivity : AppCompatActivity() {
         top.person.setOnClickListener(){
             startActivity<MypageActivity>()
         }
+
+        top.notification.setOnClickListener(){
+            startActivity<NotificationActivity>()
+        }
+
+        //팀관리 임시
         button121.setOnClickListener(){
             startActivity<TeamManageActivity>()
         }
+
         // HTTP 통신
         setRetrofit()
 

@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_footer.view.*
 import kotlinx.android.synthetic.main.activity_make_team.*
 import kotlinx.android.synthetic.main.activity_mypage.*
-import kotlinx.android.synthetic.main.activity_mypage.top
+import kotlinx.android.synthetic.main.activity_mypage.top_mypage
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.jetbrains.anko.startActivity
@@ -42,8 +42,12 @@ class MypageActivity : AppCompatActivity() {
             updateUser(user)
         }
         //푸터
-        top.home.setOnClickListener(){
+        top_mypage.home.setOnClickListener(){
             startActivity<MainActivity>()
+        }
+
+        top_mypage.notification.setOnClickListener(){
+            startActivity<NotificationActivity>()
         }
 
     }

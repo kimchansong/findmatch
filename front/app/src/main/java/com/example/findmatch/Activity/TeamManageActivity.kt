@@ -39,16 +39,18 @@ class TeamManageActivity : AppCompatActivity() {
         teamDeleteBtn.setOnClickListener{
             deleteTeam()
         }
-        /*
+
         //푸터
-        top.home.setOnClickListener(){
+        top_team_manager.home.setOnClickListener(){
             startActivity<MainActivity>()
         }
-        top.person.setOnClickListener(){
+        top_team_manager.person.setOnClickListener(){
             startActivity<MypageActivity>()
         }
+        top_team_manager.notification.setOnClickListener(){
+            startActivity<NotificationActivity>()
+        }
 
-         */
     }
 
     // 팀 정보 불러오기

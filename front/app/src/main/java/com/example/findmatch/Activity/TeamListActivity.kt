@@ -31,6 +31,7 @@ class TeamListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_team_list)
 
         getMyTeam(this)
+
         //푸터
         top_team_list.home.setOnClickListener(){
             startActivity<MainActivity>()
@@ -38,6 +39,10 @@ class TeamListActivity : AppCompatActivity() {
         top_team_list.person.setOnClickListener(){
             startActivity<MypageActivity>()
         }
+        top_team_list.notification.setOnClickListener(){
+            startActivity<NotificationActivity>()
+        }
+
     }
 
     // 내가 속한 팀 불러오기
